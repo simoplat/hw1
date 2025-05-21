@@ -16,19 +16,19 @@
             <nav class="navbar">
                 <div class="nav-left">
                     <button id="button-menu">
-                        <img id="menu-img" src="menu.svg"/>
+                        <img id="menu-img" src="media/menu.svg"/>
                     </button>
-                    <img id="logoimg" src="YouTube-logo.png"/>
+                    <img id="logoimg" src="media/YouTube-logo.png"/>
                 </div>
 
                 <div class="nav-center">
                    <form id="search-form">
                         <input type="text" placeholder="Cerca" id="search-bar">
                         <button id="search-button">
-                            <img id="search-icon" src="search.svg"/>
+                            <img id="search-icon" src="media/search.svg"/>
                         </button>
                         <!-- <button id="mic-button">
-                            <img id="mic-img" src="microphone.png"/>
+                            <img id="mic-img" src="media/microphone.png"/>
                         </button> -->
                     </form>
                 </div>
@@ -36,12 +36,12 @@
                 <div class="nav-right">
                     <button>
                         <section>
-                            <img id="cross-pic" src="cross.svg">
+                            <img id="cross-pic" src="media/cross.svg">
                             Crea                       
                         </section>
                     </button>
                     <button id="notify-button">
-                        <img id="notify-pic" src="notifications-1.png"/>
+                        <img id="notify-pic" src="media/notifications-1.png"/>
                     </button>
                     <div class="notify-menu hidden" >
                         <h1>Notifiche</h1>
@@ -49,11 +49,11 @@
                         <p>Luigi ha messo mi piace al tuo video</p>
                     </div>
                     <button id="button-profile">
-                        <img id="profpic" src="pf1.jpg"/>
+                        <img id="profpic" src="media/Portrait_Placeholder.png"/>
                     </button>
                     <div class="personal-menu hidden" >
-                        <img id="profpic-menu" src="pf1.jpg"/>
-                        <h1>Paolino Paperino</h1>
+                        <img id="profpic-menu" src="media/Portrait_Placeholder.png"/>
+                        <h1>Default Name</h1>
                         <button class="menu-button" data-action="change-picture">
                             <p>Cambia immagine profilo</p>
                         </button>
@@ -64,7 +64,7 @@
                             <p>Preferenze account</p>
                         </button>
                         <button class="menu-button" data-action="contact">
-                            <p>Contattaci</p>
+                            <a href='logout.php'>Log out</a>
                         </button>
                     </div>
                     
@@ -82,7 +82,7 @@
                         <button>
                             <div class="sidebar-inside">
                                 <div class="sdbar-ins-img">
-                                <img src="home.svg"/>
+                                <img src="media/home.svg"/>
                                 </div>
                                 <div class="sdbar-ins-txt" data-section="home">
                                 <p>Home</p>
@@ -95,7 +95,7 @@
                         <button>
                             <div class="sidebar-inside">
                                 <div class="sdbar-ins-img">
-                                <img src="video-short.svg"/>
+                                <img src="media/video-short.svg"/>
                                 </div>
                                 <div class="sdbar-ins-txt" data-section="Shorts">
                                 <p>Shorts</p>
@@ -106,14 +106,14 @@
                     
                     <h1 data-type="Tu">
                         Tu
-                        <img data-type="up" class="toggle" src="down-arrow.svg">
+                        <img data-type="up" class="toggle" src="media/down-arrow.svg">
                     </h1>
 
                     <div class="sidebar-h" data-type="Tu">
                         <button>
                             <div class="sidebar-inside">
                                 <div class="sdbar-ins-img">
-                                <img src="play.svg"/>
+                                <img src="media/play.svg"/>
                                 </div>
                                 <div class="sdbar-ins-txt" data-section="Iscrizioni">
                                 <p>Iscrizioni</p>
@@ -126,7 +126,7 @@
                         <button id="buttonPlaylist">
                             <div class="sidebar-inside">
                                 <div class="sdbar-ins-img">
-                                <img src="library.svg"/>
+                                <img src="media/library.svg"/>
                                 </div>
                                 <div class="sdbar-ins-txt" data-section="Playlist">
                                 <p>Playlist</p>
@@ -138,7 +138,7 @@
                         <button>
                             <div class="sidebar-inside">
                                 <div class="sdbar-ins-img">
-                                <img src="history.svg"/>
+                                <img src="media/history.svg"/>
                                 </div>
                                 <div class="sdbar-ins-txt" data-section="Cronologia">
                                 <p>Cronologia</p>
@@ -150,7 +150,7 @@
                         <button>
                             <div class="sidebar-inside">
                                 <div class="sdbar-ins-img">
-                                <img src="like.svg"/>
+                                <img src="media/like.svg"/>
                                 </div>
                                     <div class="sdbar-ins-txt" data-section="Mi-piace">
                                         <p>Mi piace</p>
@@ -160,7 +160,7 @@
                     </div>
                     <h1 data-type="channel">
                         Le tue iscrizioni
-                        <img data-type="up" class="toggle" src="down-arrow.svg">
+                        <img data-type="up" class="toggle" src="media/down-arrow.svg">
 
                     </h1>
                         <div class="sidebar-h" data-type="channel">
@@ -236,10 +236,10 @@
                 <div class="video-layout">
                             <div class="video-content">
                                 <div class="video-thumbnail">
-                                    <img src="Cosa-Fare-a-New-york-01.jpg"/>
+                                    <img src="Media/placeholder.jpg"/>
                                 </div>
                                 <div class="video-info">
-                                    <img src="pf2.jpg"/>
+                                    <img src="Media/Portrait_Placeholder.png"/>
                                     <div class="video-info-channel">
                                         <h1>Viaggio a New York: cosa vedere e consigli utili per conoscere la città</h1>
                                         <p>CHANNEL</p>
@@ -394,13 +394,13 @@
 
         <div class="mobile-navbar">
             <button>
-                <img class="svg-white" src="home.svg"/>
+                <img class="svg-white" src="media/home.svg"/>
             </button>
                 <button id="button-menu-mobile">
-                    <img class="svg-white" src="library.svg"/>
+                    <img class="svg-white" src="media/library.svg"/>
                 </button>
             <button>
-                <img id="pic-nav-mobile" src="pf1.jpg"/>
+                <img id="pic-nav-mobile" src="media/pf1.jpg"/>
             </button>
         </div>
 

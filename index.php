@@ -53,7 +53,7 @@
     </head>
     <body>
         <div class="logo">
-            <img src="YouTube-logo.png">
+            <img src="media/YouTube-logo.png">
 
         </div>
         <div class="login">
@@ -66,7 +66,7 @@
                 }
                 
             ?>
-            <form name='login' method='post'>
+            <form name='login' method='post' id="form-login">
                 <!-- Seleziono il valore di ogni campo sulla base dei valori inviati al server via POST -->
                 <div class="username">
                     <label for='username'>Username</label>
@@ -78,9 +78,7 @@
                 </div>
                 <div class="submit-container">
                     <div class="login-btn">
-                    
-                            <input type='submit' value="ACCEDI">                    
-                       
+                            <input type='submit' value="ACCEDI">
                     </div>
                 </div>
             </form>
