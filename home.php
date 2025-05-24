@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mhw2</title>
+    <title>hw1</title>
     <link rel="stylesheet" href="home.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -113,7 +113,8 @@
                     </div>
                     
                     <h1 data-type="Tu">
-                        Tu
+                        <!-- TU   (old)-->
+                        Sezione Personale
                         <img data-type="up" class="toggle" src="media/down-arrow.svg">
                     </h1>
 
@@ -121,10 +122,10 @@
                         <button>
                             <div class="sidebar-inside">
                                 <div class="sdbar-ins-img">
-                                <img src="media/play.svg"/>
+                                <img src="media/heart_full.svg"/>
                                 </div>
-                                <div class="sdbar-ins-txt" data-section="Iscrizioni">
-                                <p>Iscrizioni</p>
+                                <div class="sdbar-ins-txt" data-section="Preferiti">
+                                <p>Preferiti</p>
                                 </div>
                             </div>
                         </button>
@@ -142,7 +143,7 @@
                             </div>
                         </button>
                     </div>
-                    <div class="sidebar-h" data-type="Tu">
+                    <!-- <div class="sidebar-h" data-type="Tu">
                         <button>
                             <div class="sidebar-inside">
                                 <div class="sdbar-ins-img">
@@ -153,7 +154,7 @@
                                 </div>
                             </div>
                         </button>
-                    </div>
+                    </div> -->
                     <div class="sidebar-h" data-type="Tu">
                         <button>
                             <div class="sidebar-inside">
@@ -171,57 +172,13 @@
                         <img data-type="up" class="toggle" src="media/down-arrow.svg">
 
                     </h1>
-                        <div class="sidebar-h" data-type="channel">
-                            <button>
-                                <div class="sidebar-inside">
-                                    <div class="sdbar-ins-img">
-                                        <img class="channel-pic" src="pf1.jpg"/>
-                                    </div>
-                                    <div class="sdbar-ins-txt">
-                                    <p>Yoshi</p>
-                                    </div>
-                                </div>
-                            </button>    
-                        </div>
-
-                        <div class="sidebar-h" data-type="channel">
-                            <button>
-                                <div class="sidebar-inside">
-                                    <div class="sdbar-ins-img">
-                                        <img class="channel-pic" src="pf3.jpg"/>
-                                    </div>
-                                    <div class="sdbar-ins-txt">
-                                    <p>Todd</p>
-                                    </div>
-                                </div>
-                            </button>    
-                        </div>
+                    <div class="createChannels">
                         
-                        <div class="sidebar-h" data-type="channel">
-                            <button>
-                                <div class="sidebar-inside">
-                                    <div class="sdbar-ins-img">
-                                    <img class="channel-pic" src="pf1.jpg"/>
-                                    </div>
-                                    <div class="sdbar-ins-txt">
-                                    <p>MarioLuigi88</p>
-                                    </div>
-                                </div>
-                            </button>    
-                        </div>
 
-                        <div class="sidebar-h" data-type="channel">
-                            <button>
-                                <div class="sidebar-inside">
-                                    <div class="sdbar-ins-img">
-                                        <img class="channel-pic" src="pf2.jpg"/>
-                                    </div>
-                                    <div class="sdbar-ins-txt">
-                                    <p>Peach</p>
-                                    </div>
-                                </div>
-                            </button>    
-                        </div>
+
+                    </div>
+
+                        
                     
                 </div>
             </div>

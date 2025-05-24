@@ -324,3 +324,88 @@ fetch("https://accounts.spotify.com/api/token",
 
 const playlistButton = document.querySelector('#buttonPlaylist');
 playlistButton.addEventListener('click', playlistSpotify);
+
+
+
+// API CHANNELS
+
+const channelDivCreator = document.querySelector('.createChannels');
+
+function onJsonChannels(json) {
+       console.log('Json ricevuto, creo i canali');
+       console.log(json);
+       channelDivCreator.innerHTML = '';
+
+       json.forEach(channel => {
+          // Creo un nuovo div
+          // Creo il div principale con classe e attributo data-type
+const sidebarDiv = document.createElement('div');
+sidebarDiv.classList.add('sidebar-h');
+sidebarDiv.setAttribute('data-type', 'channel');
+
+// Creo il button
+const button = document.createElement('button');
+
+// Creo il div sidebar-inside
+const sidebarInside = document.createElement('div');
+sidebarInside.classList.add('sidebar-inside');
+
+// Creo il div per immagine
+const imgDiv = document.createElement('div');
+imgDiv.classList.add('sdbar-ins-img');
+
+// Creo l'img
+const img = document.createElement('img');
+img.classList.add('channel-pic');
+img.src = 'Media/Portrait_Placeholder.png';
+
+
+imgDiv.appendChild(img);
+
+// Creo il div per il testo
+const txtDiv = document.createElement('div');
+txtDiv.classList.add('sdbar-ins-txt');
+
+const p = document.createElement('p');
+p.textContent = channel.channelname;
+
+
+txtDiv.appendChild(p);
+
+
+sidebarInside.appendChild(imgDiv);
+sidebarInside.appendChild(txtDiv);
+
+
+button.appendChild(sidebarInside);
+
+
+sidebarDiv.appendChild(button);
+
+
+channelDivCreator.appendChild(sidebarDiv);
+
+
+       });
+}
+
+function loadchannels(){
+    console.log('Carico i canali');
+    fetch('fetchchannels.php').then(onResponse).then(onJsonChannels);
+};
+
+loadchannels();
+
+
+//clik su canale
+
+
+document.addEventListener('click', function (event) {
+  const button = event.target.closest('.sidebar-h[data-type="channel"] button');
+  if (button) {
+    event.preventDefault();
+    const channelName = button.querySelector('p').textContent.trim();
+    console.log('Canale selezionato:', channelName);
+    window.location.href = `user.php?user=${encodeURIComponent(channelName)}`;
+  }
+});
