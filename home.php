@@ -53,7 +53,15 @@
                     </button>
                     <div class="personal-menu hidden" >
                         <img id="profpic-menu" src="media/Portrait_Placeholder.png"/>
-                        <h1>Default Name</h1>
+                        
+                            <?php
+                            session_start();
+                            if (isset($_SESSION['_agora_username'])) {
+                                echo "<h1> Benvenuto, " . $_SESSION['_agora_username'] . "!</h1>";
+                            }
+                            ?>
+
+
                         <button class="menu-button" data-action="change-picture">
                             <p>Cambia immagine profilo</p>
                         </button>

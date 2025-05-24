@@ -773,7 +773,7 @@ footer:hover {
   display: block;
   margin-top: 10px;
   width: 200px;
-  height: 30px;
+  height: auto;
   text-align: center;
   font-weight: bold;
 }
