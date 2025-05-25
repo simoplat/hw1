@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS Post (
     id_post INT PRIMARY KEY AUTO_INCREMENT,
     id_autore INT NOT NULL,
+    title VARCHAR(255),
     contenuto TEXT NOT NULL,
     percorsoMedia VARCHAR(255),
     categoria VARCHAR(255),
