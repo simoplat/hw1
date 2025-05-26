@@ -27,5 +27,15 @@ CREATE TABLE IF NOT EXISTS Iscrizione (
     FOREIGN KEY (follower_id) REFERENCES users(id),
     FOREIGN KEY (seguito_id) REFERENCES users(id),
     CHECK (follower_id <> seguito_id)
-)
+);
+
+
+CREATE TABLE IF NOT EXISTS ImmaginiUtente (
+    id_utente INT PRIMARY KEY,
+    immagine_profilo VARCHAR(255),
+    immagine_copertina VARCHAR(255),
+    FOREIGN KEY (id_utente) REFERENCES users(id)
+);
+
+
 

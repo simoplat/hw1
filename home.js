@@ -357,7 +357,11 @@ imgDiv.classList.add('sdbar-ins-img');
 // Creo l'img
 const img = document.createElement('img');
 img.classList.add('channel-pic');
-img.src = 'Media/Portrait_Placeholder.png';
+if(channel.immagine_profilo)  {
+    img.src = channel.immagine_profilo;
+} else {
+    img.src = 'Media/Portrait_Placeholder.png';
+}
 
 
 imgDiv.appendChild(img);

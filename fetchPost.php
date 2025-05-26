@@ -22,12 +22,15 @@ $id_post = intval($_GET['id_post']);
 // Query con join per recuperare anche il nome utente dell'autore
 $query = "
     SELECT Post.id_post, Post.title, Post.contenuto, Post.percorsoMedia, Post.categoria,
-           users.username AS autore, users.name, users.surname
+           users.username AS autore, users.name, users.surname,
+           i.immagine_profilo, i.immagine_copertina
     FROM Post
     JOIN users ON Post.id_autore = users.id
+    LEFT JOIN immaginiutente AS i ON users.id = i.id_utente
     WHERE Post.id_post = $id_post
     LIMIT 1
 ";
+
 
 $result = mysqli_query($conn, $query);
 if (!$result) {
@@ -49,7 +52,9 @@ echo json_encode([
     'categoria'     => $post['categoria'],
     'autore'        => $post['autore'],
     'name'          => $post['name'],
-    'surname'       => $post['surname']
+    'surname'       => $post['surname'],
+    'immagine_profilo' => $post['immagine_profilo'],
+    'immagine_copertina' => $post['immagine_copertina']
 ]);
 
 exit;

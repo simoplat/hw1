@@ -105,7 +105,7 @@
                         </button>
                     </div>
                     
-                    <div class="sidebar-h">
+                    <!-- <div class="sidebar-h">
                         <button>
                             <div class="sidebar-inside">
                                 <div class="sdbar-ins-img">
@@ -116,7 +116,7 @@
                                 </div>
                             </div>
                         </button>    
-                    </div>
+                    </div> -->
                     
                     <h1 data-type="Tu">
                         <!-- TU   (old)-->
@@ -279,7 +279,7 @@
                     <img class="svg-white" src="media/library.svg"/>
                 </button>
             <button>
-                <img id="pic-nav-mobile" src="media/pf1.jpg"/>
+                <img id="pic-nav-mobile" src="Media/Portrait_Placeholder.png"/>
             </button>
         </div>
 

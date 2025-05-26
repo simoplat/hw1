@@ -1,7 +1,8 @@
-<?php 
+<?php
 
 require_once 'auth.php';
-if (!$userid = checkAuth()) exit;
+if (!$userid = checkAuth())
+    exit;
 
 header('Content-Type: application/json');
 
@@ -14,9 +15,10 @@ if (!$conn) {
 $userid = mysqli_real_escape_string($conn, $userid);
 
 $query = "
-    SELECT u.id, u.username, u.name, u.surname 
+    SELECT u.id, u.username, u.name, u.surname, imm.immagine_profilo
     FROM iscrizione i
     JOIN users u ON i.seguito_id = u.id
+    LEFT JOIN immaginiutente imm ON u.id = imm.id_utente
     WHERE i.follower_id = $userid
 ";
 
@@ -33,7 +35,8 @@ while ($entry = mysqli_fetch_assoc($result)) {
         'channelid' => $entry['id'],
         'channelname' => $entry['username'],
         'name' => $entry['name'],
-        'surname' => $entry['surname']
+        'surname' => $entry['surname'],
+        'immagine_profilo' => $entry['immagine_profilo']
     ];
 }
 

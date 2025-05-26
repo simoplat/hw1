@@ -21,20 +21,20 @@ function Onresponse(response) {
 function onJson(json) {
     const postContent = document.getElementById('post-content');
     const titleContainer = document.querySelector('.header-title');
-
+    const author = document.querySelector('.author');
     const authorNameElem = document.querySelector('.author-name');
     const authorUsernameElem = document.querySelector('.author-username');
-
-    
     const cover = document.querySelector('.cover');
 
-    if (!postContent || !titleContainer || !authorNameElem || !authorUsernameElem) {
+    if (!postContent || !titleContainer || !authorNameElem || !authorUsernameElem || !author) {
         console.error('Contenitori mancanti nel DOM');
         return;
     }
 
+    // Pulisci contenuti esistenti
     postContent.innerHTML = '';
     titleContainer.innerHTML = '';
+    cover.innerHTML = '';
 
     if (!json || json.error) {
         const h1 = document.createElement('h1');
@@ -49,28 +49,47 @@ function onJson(json) {
     postTitle.textContent = json.title;
     titleContainer.appendChild(postTitle);
 
-    // Imposta autore dinamico
-    authorNameElem.textContent = `${json.name} ${json.surname}`;
-    authorUsernameElem.textContent = `@${json.autore}`;
+    // Aggiorna immagine profilo autore
+    author.innerHTML = ''; // Pulisci tutto l'autore per ricostruire correttamente
+    const profileImage = document.createElement('img');
+    if (json.immagine_profilo) {
+        profileImage.src = json.immagine_profilo;
+    } else {
+        profileImage.src = 'Media/Portrait_Placeholder.png';
+    }
+    profileImage.alt = `Foto profilo di ${json.name}`;
+    profileImage.classList.add('author-img');
+    author.appendChild(profileImage);
 
-    // Costruisci il contenuto del post
+    // Ricrea la sezione info autore
+    const authorInfo = document.createElement('div');
+    authorInfo.classList.add('author-info');
+
+    const authorName = document.createElement('p');
+    authorName.classList.add('author-name');
+    authorName.textContent = `${json.name} ${json.surname}`;
+
+    const authorUsername = document.createElement('p');
+    authorUsername.classList.add('author-username');
+    authorUsername.textContent = `@${json.autore}`;
+
+    authorInfo.appendChild(authorName);
+    authorInfo.appendChild(authorUsername);
+    author.appendChild(authorInfo);
+
+    // Immagine copertina
+    if (json.percorsoMedia) {
+        const coverImg = document.createElement('img');
+        coverImg.src = json.percorsoMedia;
+        coverImg.alt = 'Immagine copertina post';
+        coverImg.classList.add('cover-img');
+        cover.appendChild(coverImg);
+    }
+
+    // Contenuto del post
     const postDiv = document.createElement('div');
     postDiv.classList.add('post');
 
-    // Immagine
-    if (json.percorsoMedia) {
-        cover.innerHTML = ''; 
-        const image = document.createElement('img');
-        image.src = json.percorsoMedia;
-        image.classList.add('cover-img');
-        cover.appendChild(image);
-    }
-
-    // Contenuto
-    const content = document.createElement('p');
-    content.textContent = json.contenuto;
-
-    // Categoria
     if (json.categoria) {
         const category = document.createElement('span');
         category.classList.add('category');
@@ -78,8 +97,12 @@ function onJson(json) {
         postDiv.appendChild(category);
     }
 
+    const content = document.createElement('p');
+    content.textContent = json.contenuto;
     postDiv.appendChild(content);
+
     postContent.appendChild(postDiv);
 }
+
 
 fetchPost();

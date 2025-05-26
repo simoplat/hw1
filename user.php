@@ -76,7 +76,7 @@
                 <img class="svg-white" src="media/library.svg" />
             </button>
             <button>
-                <img id="pic-nav-mobile" src="Media/Portait_Placehoder.png" />
+                <img id="pic-nav-mobile" src="Media/Portrait_Placeholder.png" />
             </button>
         </div>
 
