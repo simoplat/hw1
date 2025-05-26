@@ -29,6 +29,35 @@ function onJson(json) {
     const profileContent = document.getElementById('profile-content');
     profileContent.innerHTML = '';
 
+if (json.profilo && json.profilo.name && json.profilo.surname) {
+    const userDetails = document.querySelector('.user-details');
+
+    // Pulisci eventuali elementi esistenti
+    userDetails.innerHTML = '';
+
+    // Crea H2 con nome e cognome
+    const nameElem = document.createElement('h2');
+    nameElem.id = 'username';
+    nameElem.textContent = json.profilo.name + ' ' + json.profilo.surname;
+
+    // Crea P con username (se presente)
+    const usernameElem = document.createElement('p');
+    usernameElem.id = 'user-tag';
+    if (json.profilo.username) {
+        usernameElem.textContent = '@' + json.profilo.username;
+    } else {
+        usernameElem.textContent = '@utente_sconosciuto';
+    }
+
+    // Inserisci nel DOM
+    userDetails.appendChild(nameElem);
+    userDetails.appendChild(usernameElem);
+}
+
+
+
+
+
     const heading = document.createElement('h3');
     heading.textContent = 'Post recenti';
     profileContent.appendChild(heading);
@@ -74,6 +103,7 @@ function onJson(json) {
         postDiv.appendChild(title);
         postDiv.appendChild(content);
         profileContent.appendChild(postDiv);
+
     });
 }
 

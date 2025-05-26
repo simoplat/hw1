@@ -30,23 +30,11 @@
                     <div class="profile-info">
                         <img src="Media/Portrait_Placeholder.png" alt="Profilo" id="profile-pic-id" class="profile-pic" />
                         <div class="user-details">
-                            <h2 class="username">
-                                <?php
-                                    if (isset($_GET['user'])) {
-                                        echo htmlspecialchars($_GET['user']);
-                                    } else {
-                                        echo 'Utente sconosciuto';
-                                    }
-                                ?>
-                            </h2>
-                            <p class="user-tag">@<?php
-                                    if (isset($_GET['user'])) {
-                                        echo htmlspecialchars($_GET['user']);
-                                    } else {
-                                        echo 'Utente sconosciuto';
-                                    }
-                                ?>
-                            </p>
+                            
+                            <!-- elementi da aggiungere dinamicamente -->
+
+
+
                         </div>
                     </div>
                 </div>
