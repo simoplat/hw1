@@ -1,3 +1,11 @@
+<?php 
+    require_once 'auth.php';
+    if (!$userid = checkAuth()) {
+        header("Location: index.php");
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,12 +63,10 @@
                         <img id="profpic-menu" src="media/Portrait_Placeholder.png"/>
                         
                             <?php
-                            session_start();
                             if (isset($_SESSION['_agora_username'])) {
                                 echo "<h1> Benvenuto, " . $_SESSION['_agora_username'] . "!</h1>";
                             }
                             ?>
-
 
                         <button class="menu-button" data-action="change-picture">
                             <p>Cambia immagine profilo</p>
@@ -138,7 +144,7 @@
                                 <img src="media/library.svg"/>
                                 </div>
                                 <div class="sdbar-ins-txt" data-section="Playlist">
-                                <p>Playlist</p>
+                                <p>Playlist Musicale</p>
                                 </div>
                             </div>
                         </button>
@@ -213,7 +219,7 @@
                             </div>
                             <div class="video-content">
                                 <div class="video-thumbnail">
-                                    <img src="Intelligenza-Artificiale.jpeg"/>
+                                    <img src="Media/placeholder.jpeg"/>
                                 </div>
                                 <div class="video-info">
                                     <img src="pf1.jpg"/>
@@ -225,7 +231,7 @@
                             </div>
                             <div class="video-content">
                                 <div class="video-thumbnail">
-                                    <img src="cinema.jpg"/>
+                                    <img src="Media/placeholder.jpg"/>
                                 </div>
                                 <div class="video-info">
                                     <img src="pf1.jpg"/>
@@ -258,99 +264,7 @@
                                         <p>CHANNEL</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="video-content">
-                                <div class="video-thumbnail">
-                                    <img src="Londra.jpg"/>
-                                </div>
-                                <div class="video-info">
-                                    <img src="pf2.jpg"/>
-                                    <div class="video-info-channel">
-                                        <h1>Londra: 10 attrazioni che non puoi perdere assolutamente!</h1>
-                                        <p>CHANNEL</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Repliche per riempire lo spazio -->
-
-
-                            <div class="video-content">
-                                <div class="video-thumbnail">
-                                    <img src="Cosa-Fare-a-New-york-01.jpg"/>
-                                </div>
-                                <div class="video-info">
-                                    <img src="pf2.jpg"/>
-                                    <div class="video-info-channel">
-                                        <h1>Viaggio a New York: cosa vedere e consigli utili per conoscere la città</h1>
-                                        <p>CHANNEL</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="video-content">
-                                <div class="video-thumbnail">
-                                    <img src="Intelligenza-Artificiale.jpeg"/>
-                                </div>
-                                <div class="video-info">
-                                    <img src="pf1.jpg"/>
-                                    <div class="video-info-channel">
-                                        <h1>Intelligenza artificale: risorsa o rischio?</h1>
-                                        <p>CHANNEL</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="video-content">
-                                <div class="video-thumbnail">
-                                    <img src="cinema.jpg"/>
-                                </div>
-                                <div class="video-info">
-                                    <img src="pf1.jpg"/>
-                                    <div class="video-info-channel">
-                                        <h1>Film da guardare al cinema</h1>
-                                        <p>CHANNEL</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="video-content">
-                                <div class="video-thumbnail">
-                                    <img src="videogame.jpg"/>
-                                </div>
-                                <div class="video-info">
-                                    <img src="pf3.jpg"/>
-                                    <div class="video-info-channel">
-                                        <h1>Gaming nuove uscite</h1>
-                                        <p>CHANNEL</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="video-content">
-                                <div class="video-thumbnail">
-                                    <img src="concerto.jpg"/>
-                                </div>
-                                <div class="video-info">
-                                    <img src="pf1.jpg"/>
-                                    <div class="video-info-channel">
-                                        <h1>Concerti estivi 2025</h1>
-                                        <p>CHANNEL</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="video-content">
-                                <div class="video-thumbnail">
-                                    <img src="Londra.jpg"/>
-                                </div>
-                                <div class="video-info">
-                                    <img src="pf2.jpg"/>
-                                    <div class="video-info-channel">
-                                        <h1>Londra: 10 attrazioni che non puoi perdere assolutamente!</h1>
-                                        <p>CHANNEL</p>
-                                    </div>
-                                </div>
-                            </div>
-                    
-                            
-                        
-                
+                            </div>                            
                 </div>
 
             </div>
