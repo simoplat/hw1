@@ -40,7 +40,25 @@ function onJson(json) {
         return;
     }
 
+    const profPic = document.getElementById('profile-pic');
+if (profPic && json.length > 0 && profPic.getAttribute('data-type') !== 'SET') {
+    profPic.classList.add('profile-pic');
+    profPic.src = json[0].immagine_profilo
+    profPic.setAttribute('data-type', 'SET');
+}
+
+const profPicBackground = document.getElementById('cover-photo');
+if (profPicBackground && json.length > 0 && profPicBackground.getAttribute('data-type') !== 'SET') {
+    profPicBackground.classList.add('cover-photo');
+    profPicBackground.src = json[0].immagine_copertina 
+    profPicBackground.setAttribute('data-type', 'SET');
+}
+
+
+
+
     json.forEach(post => {
+
         const postDiv = document.createElement('div');
         postDiv.classList.add('post');
 

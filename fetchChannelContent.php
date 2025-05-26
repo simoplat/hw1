@@ -25,8 +25,9 @@ if (isset($_GET['user'])) {
 
 // Prendo i post dell'utente corretto
 $query = "
-    SELECT id_post, id_autore, title, contenuto, percorsoMedia, categoria 
+    SELECT id_post, id_autore, title, contenuto, percorsoMedia, categoria, i.immagine_profilo, i.immagine_copertina
     FROM Post 
+    left JOIN immaginiutente i ON post.id_autore=i.id_utente
     WHERE id_autore = $searchUserId
     ORDER BY id_post DESC 
 ";
@@ -45,7 +46,9 @@ while ($entry = mysqli_fetch_assoc($result)) {
         'title' => $entry['title'],
         'contenuto' => $entry['contenuto'],
         'percorsoMedia' => $entry['percorsoMedia'],
-        'categoria' => $entry['categoria']
+        'categoria' => $entry['categoria'],
+        'immagine_profilo' => $entry['immagine_profilo'] ? $entry['immagine_profilo'] : 'Media/Portrait_Placeholder.png',
+        'immagine_copertina' => $entry['immagine_copertina'] ? $entry['immagine_copertina'] : 'Media/placeholder.jpg'
     ];
 }
 
