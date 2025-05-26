@@ -26,9 +26,9 @@
          
             <div class="central-layout">
                 <div class="profile-header">
-                    <img src="Media/placeholder.jpg" alt="Copertina" id="cover-photo" class="cover-photo" />
+                    <img src="Media/placeholder.jpg" alt="Copertina" id="cover-photo-id" class="cover-photo" />
                     <div class="profile-info">
-                        <img src="Media/Portrait_Placeholder.png" alt="Profilo" id="profile-pic" class="profile-pic" />
+                        <img src="Media/Portrait_Placeholder.png" alt="Profilo" id="profile-pic-id" class="profile-pic" />
                         <div class="user-details">
                             <h2 class="username">
                                 <?php
