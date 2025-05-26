@@ -33,32 +33,30 @@ function onJson(json) {
     heading.textContent = 'Post recenti';
     profileContent.appendChild(heading);
 
-    if (!json || json.length === 0) {
+    // Imposta immagini profilo/copertina
+    const profPic = document.getElementById('profile-pic-id');
+    if (profPic && json.profilo) {
+        profPic.classList.add('profile-pic');
+        profPic.src = json.profilo.immagine_profilo
+        profPic.setAttribute('data-type', 'SET');
+    }
+
+    const coverPhoto = document.getElementById('cover-photo-id');
+    if (coverPhoto && json.profilo) {
+        coverPhoto.classList.add('cover-photo');
+        coverPhoto.src = json.profilo.immagine_copertina
+        coverPhoto.setAttribute('data-type', 'SET');
+    }
+
+    // Mostra i post
+    if (!json.post || json.post.length === 0) {
         const noPosts = document.createElement('p');
         noPosts.textContent = 'Nessun post trovato.';
         profileContent.appendChild(noPosts);
         return;
     }
 
-    const profPic = document.getElementById('profile-pic-id');
-if (profPic && json.length > 0 && profPic.getAttribute('data-type') !== 'SET') {
-    profPic.classList.add('profile-pic');
-    profPic.src = json[0].immagine_profilo
-    profPic.setAttribute('data-type', 'SET');
-}
-
-const profPicBackground = document.getElementById('cover-photo-id');
-if (profPicBackground && json.length > 0 && profPicBackground.getAttribute('data-type') !== 'SET') {
-    profPicBackground.classList.add('cover-photo');
-    profPicBackground.src = json[0].immagine_copertina 
-    profPicBackground.setAttribute('data-type', 'SET');
-}
-
-
-
-
-    json.forEach(post => {
-
+    json.post.forEach(post => {
         const postDiv = document.createElement('div');
         postDiv.classList.add('post');
 
