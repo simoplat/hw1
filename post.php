@@ -1,3 +1,11 @@
+<?php 
+    require_once 'auth.php';
+    if (!$userid = checkAuth()) {
+        header("Location: index.php");
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="it">
 

@@ -109,6 +109,10 @@ body {
   padding: 20px;
 }
 
+.comments-section textarea{
+  font-family: "Open Sans", sans-serif;
+}
+
 .comments-section h2 {
   margin-top: 0;
 }
