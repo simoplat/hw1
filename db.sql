@@ -37,5 +37,17 @@ CREATE TABLE IF NOT EXISTS ImmaginiUtente (
     FOREIGN KEY (id_utente) REFERENCES users(id)
 );
 
+CREATE TABLE IF NOT EXISTS Commenti (
+    id_commento INT PRIMARY KEY AUTO_INCREMENT,
+    id_post INT NOT NULL,
+    id_autore INT NOT NULL,
+    testo TEXT NOT NULL,
+    FOREIGN KEY (id_post) REFERENCES Post(id_post),
+    FOREIGN KEY (id_autore) REFERENCES users(id)
+);
 
+CREATE TABLE IF NOT EXISTS Categorie (
+    id_categoria INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL UNIQUE
+);
 

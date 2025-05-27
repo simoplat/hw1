@@ -436,9 +436,13 @@ function onJsonHomeFeed(json) {
         const divPost = document.createElement('div');
         divPost.classList.add('video-content');
 
-        // THUMBNAIL con redirect a post
+        // THUMBNAIL con <a>
         const divThumbnail = document.createElement('div');
         divThumbnail.classList.add('video-thumbnail');
+
+        const aThumbnail = document.createElement('a');
+        aThumbnail.href = `post.php?id_post=${encodeURIComponent(post.id_post)}`;
+        aThumbnail.dataset.id = post.id_post;
 
         const imgThumbnail = document.createElement('img');
         imgThumbnail.alt = 'Immagine copertina post';
@@ -448,19 +452,19 @@ function onJsonHomeFeed(json) {
         imgThumbnail.onerror = () => {
             imgThumbnail.src = 'Media/placeholder.jpg';
         };
-        imgThumbnail.dataset.id = post.id_post;
-        imgThumbnail.style.cursor = 'pointer';
-        imgThumbnail.addEventListener('click', () => {
-            window.location.href = `post.php?id_post=${encodeURIComponent(post.id_post)}`;
-        });
 
-        divThumbnail.appendChild(imgThumbnail);
+        aThumbnail.appendChild(imgThumbnail);
+        divThumbnail.appendChild(aThumbnail);
 
         // INFO
         const divInfo = document.createElement('div');
         divInfo.classList.add('video-info');
 
-        // Immagine profilo con redirect a utente
+        // Immagine profilo con <a>
+        const aProfile = document.createElement('a');
+        aProfile.href = `user.php?user=${encodeURIComponent(post.canale)}`;
+        aProfile.dataset.channel = post.canale;
+
         const imgProfile = document.createElement('img');
         imgProfile.alt = 'Immagine profilo canale';
         imgProfile.src = post.immagine_profilo && post.immagine_profilo.trim() !== ''
@@ -469,36 +473,36 @@ function onJsonHomeFeed(json) {
         imgProfile.onerror = () => {
             imgProfile.src = 'Media/Portrait_Placeholder.png';
         };
-        imgProfile.dataset.channel = post.canale;
-        imgProfile.style.cursor = 'pointer';
-        imgProfile.addEventListener('click', () => {
-            window.location.href = `user.php?user=${encodeURIComponent(post.canale)}`;
-        });
 
-        // Info canale
+        imgProfile.classList.add('channel-pic');
+        aProfile.appendChild(imgProfile);
+        divInfo.appendChild(aProfile);
+
+        // Info canale (titolo + nome)
         const divChannelInfo = document.createElement('div');
         divChannelInfo.classList.add('video-info-channel');
 
+        // Titolo con <a>
+        const aTitle = document.createElement('a');
+        aTitle.href = `post.php?id_post=${encodeURIComponent(post.id_post)}`;
+        aTitle.dataset.id = post.id_post;
+
         const h1 = document.createElement('h1');
         h1.textContent = post.title || 'Senza titolo';
-        h1.dataset.id = post.id_post;
-        h1.style.cursor = 'pointer';
-        h1.addEventListener('click', () => {
-            window.location.href = `post.php?id_post=${encodeURIComponent(post.id_post)}`;
-        });
+        aTitle.appendChild(h1);
+
+        // Nome canale con <a>
+        const aChannelName = document.createElement('a');
+        aChannelName.href = `user.php?user=${encodeURIComponent(post.canale)}`;
+        aChannelName.dataset.channel = post.canale;
 
         const p = document.createElement('p');
         p.textContent = post.canale || 'Canale sconosciuto';
-        p.dataset.channel = post.canale;
-        p.style.cursor = 'pointer';
-        p.addEventListener('click', () => {
-            window.location.href = `user.php?user=${encodeURIComponent(post.canale)}`;
-        });
+        aChannelName.appendChild(p);
 
-        divChannelInfo.appendChild(h1);
-        divChannelInfo.appendChild(p);
+        divChannelInfo.appendChild(aTitle);
+        divChannelInfo.appendChild(aChannelName);
 
-        divInfo.appendChild(imgProfile);
         divInfo.appendChild(divChannelInfo);
 
         divPost.appendChild(divThumbnail);

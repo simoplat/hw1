@@ -426,7 +426,7 @@ header {
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.2em;
-  max-height: 2.4em; 
+  max-height: 2.4em;
   font-size: 1.2em;
   padding: 1px;
 }
@@ -435,6 +435,11 @@ header {
   font-weight: bold;
   color: rgb(126, 126, 126);
 
+}
+
+.video-info a{
+  text-decoration: none;
+  color:black;
 }
 
 .video-info-channel{
