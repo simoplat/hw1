@@ -157,6 +157,39 @@ body {
   margin-right: 5px;
 }
 
+#preferito-btn {
+  display: flex;              /* testo + icona in fila */
+  align-items: center;        /* centrati verticalmente */
+  gap: 8px;                   /* spazio tra testo e icona */
+  
+  width: max-content;         /* larghezza minima per contenuto */
+  margin: 20px auto;          /* centro bottone nella pagina */
+  
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#preferito-btn:hover {
+  background-color: #0056b3;
+}
+
+#preferito-btn .icon {
+  width: 20px;
+  height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  object-fit: contain;
+  display: block;   /* evita spazi strani e dimensioni sbagliate */
+}
+
+
+
 /* Footer */
 .footer {
   text-align: center;

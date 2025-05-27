@@ -43,10 +43,16 @@
 
         <!-- Contenuto del post -->
         <main id="post-content" class="post-content">
-            
+
             <!-- contenuto del post -->
-    
+
         </main>
+
+        <button id="preferito-btn" data-set="NO">
+            Preferito
+            <img src="Media/heart_full.svg" alt="Preferito" class="icon" />
+        </button>
+
 
         <section class="comments-section">
             <h2>Commenti</h2>

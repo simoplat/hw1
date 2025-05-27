@@ -108,8 +108,12 @@ function onJson(json) {
 fetchPost();
 aggiornaCommenti();
 
+const commentForm = document.getElementById('comment-form');
+commentForm.addEventListener('submit', handleCommentSubmit);
+
+
 function aggiornaCommenti(){
-    const commentSection = document.querySelector('comments-section');
+    const commentSection = document.querySelector('.comments-section');
 
     
 }
@@ -117,14 +121,12 @@ function aggiornaCommenti(){
 
 
 function responseAggiungiCommento(response) {
-    console.log('Response received for comment'+ response);
-    commentForm.reset();
+    if (!response) return;
+    console.log('Response received for comment:', response);
+    if (commentForm) commentForm.reset();
     aggiornaCommenti();
-
 }
 
-const commentForm = document.getElementById('comment-form');
-commentForm.addEventListener('submit', handleCommentSubmit);
 
 function handleCommentSubmit(event) {
     event.preventDefault();
