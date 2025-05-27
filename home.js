@@ -413,3 +413,92 @@ document.addEventListener('click', function (event) {
     window.location.href = `user.php?user=${encodeURIComponent(channelName)}`;
   }
 });
+
+function onJsonHomeFeed(json) {
+    console.log('JSON ricevuto per home feed:', json);
+
+    const contentVIDEOLAYOUT = document.querySelector('.video-layout');
+    const navCentral = document.querySelector('.nav-central');
+    const categorie = document.querySelector('.categorie');
+
+    contentVIDEOLAYOUT.innerHTML = '';
+    while (categorie.querySelector('h1')) {
+        categorie.querySelector('h1').remove();
+    }
+
+    if (json.length === 0) {
+        const noResult = document.createElement('h1');
+        noResult.textContent = 'Nessun contenuto dai canali seguiti.';
+        contentVIDEOLAYOUT.appendChild(noResult);
+        return;
+    }
+
+    for (let post of json) {
+        const divPost = document.createElement('div');
+        divPost.classList.add('video-content');
+
+        // Thumbnail
+        const divThumbnail = document.createElement('div');
+        divThumbnail.classList.add('video-thumbnail');
+
+        const imgThumbnail = document.createElement('img');
+        imgThumbnail.alt = 'Immagine copertina post';
+        imgThumbnail.src = post.percorsoMedia && post.percorsoMedia.trim() !== ''
+            ? post.percorsoMedia
+            : 'Media/placeholder.jpg';
+        imgThumbnail.onerror = () => {
+            imgThumbnail.src = 'Media/placeholder.jpg';
+        };
+        divThumbnail.appendChild(imgThumbnail);
+
+        // Video Info
+        const divInfo = document.createElement('div');
+        divInfo.classList.add('video-info');
+
+        // Immagine del profilo
+        const imgProfile = document.createElement('img');
+        imgProfile.alt = 'Immagine profilo canale';
+        imgProfile.src = post.immagine_profilo && post.immagine_profilo.trim() !== ''
+            ? post.immagine_profilo
+            : 'Media/Portrait_Placeholder.png';
+        imgProfile.onerror = () => {
+            imgProfile.src = 'Media/Portrait_Placeholder.png';
+        };
+
+        // Div info-channel
+        const divChannelInfo = document.createElement('div');
+        divChannelInfo.classList.add('video-info-channel');
+
+        const h1 = document.createElement('h1');
+        h1.textContent = post.title || 'Senza titolo';
+
+        const p = document.createElement('p');
+        p.textContent = post.canale || 'Canale sconosciuto';
+
+        divChannelInfo.appendChild(h1);
+        divChannelInfo.appendChild(p);
+
+        // Componi
+        divInfo.appendChild(imgProfile);
+        divInfo.appendChild(divChannelInfo);
+        divPost.appendChild(divThumbnail);
+        divPost.appendChild(divInfo);
+
+        contentVIDEOLAYOUT.appendChild(divPost);
+    }
+
+    if (contentVIDEOLAYOUT.classList.contains('column')) {
+        contentVIDEOLAYOUT.classList.remove('column');
+    }
+}
+
+
+function fetchHomeContent() {
+    fetch('fetchHomeContent.php').
+        then(onResponse).then(onJsonHomeFeed);
+
+}
+
+document.querySelector('#button-home').addEventListener('click', fetchHomeContent);
+
+fetchHomeContent();

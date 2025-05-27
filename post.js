@@ -78,13 +78,23 @@ function onJson(json) {
     author.appendChild(authorInfo);
 
     // Immagine copertina
-    if (json.percorsoMedia) {
-        const coverImg = document.createElement('img');
-        coverImg.src = json.percorsoMedia;
-        coverImg.alt = 'Immagine copertina post';
-        coverImg.classList.add('cover-img');
+    const coverImg = document.createElement('img');
+    coverImg.alt = 'Immagine copertina post';
+    coverImg.classList.add('cover-img');
+
+    const mediaPath = json.percorsoMedia && json.percorsoMedia.trim() !== '' ? json.percorsoMedia : null;
+
+    if (mediaPath) {
+        coverImg.src = mediaPath;
+
+        coverImg.onerror = () => {
+            coverImg.remove();
+        };
+
         cover.appendChild(coverImg);
     }
+    // NON mostrare nulla se non c'è immagine
+
 
     // Contenuto del post
     const postDiv = document.createElement('div');

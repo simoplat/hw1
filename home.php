@@ -93,7 +93,7 @@
             <div class="left-sidebar">
                 <div class="sidebar-content">
                     <div class="sidebar-h">
-                        <button>
+                        <button id="button-home">
                             <div class="sidebar-inside">
                                 <div class="sdbar-ins-img">
                                 <img src="media/home.svg"/>
