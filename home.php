@@ -205,66 +205,8 @@
                 </div>
                 
                 <div class="video-layout">
-                            <div class="video-content">
-                                <div class="video-thumbnail">
-                                    <img src="Media/placeholder.jpg"/>
-                                </div>
-                                <div class="video-info">
-                                    <img src="Media/Portrait_Placeholder.png"/>
-                                    <div class="video-info-channel">
-                                        <h1>Viaggio a New York: cosa vedere e consigli utili per conoscere la città</h1>
-                                        <p>CHANNEL</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="video-content">
-                                <div class="video-thumbnail">
-                                    <img src="Media/placeholder.jpeg"/>
-                                </div>
-                                <div class="video-info">
-                                    <img src="pf1.jpg"/>
-                                    <div class="video-info-channel">
-                                        <h1>Intelligenza artificale: risorsa o rischio?</h1>
-                                        <p>CHANNEL</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="video-content">
-                                <div class="video-thumbnail">
-                                    <img src="Media/placeholder.jpg"/>
-                                </div>
-                                <div class="video-info">
-                                    <img src="pf1.jpg"/>
-                                    <div class="video-info-channel">
-                                        <h1>Film da guardare al cinema</h1>
-                                        <p>CHANNEL</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="video-content">
-                                <div class="video-thumbnail">
-                                    <img src="videogame.jpg"/>
-                                </div>
-                                <div class="video-info">
-                                    <img src="pf3.jpg"/>
-                                    <div class="video-info-channel">
-                                        <h1>Gaming nuove uscite</h1>
-                                        <p>CHANNEL</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="video-content">
-                                <div class="video-thumbnail">
-                                    <img src="concerto.jpg"/>
-                                </div>
-                                <div class="video-info">
-                                    <img src="pf1.jpg"/>
-                                    <div class="video-info-channel">
-                                        <h1>Concerti estivi 2025</h1>
-                                        <p>CHANNEL</p>
-                                    </div>
-                                </div>
-                            </div>                            
+                            <!-- conteunuto dinamico -->
+                                                       
                 </div>
 
             </div>

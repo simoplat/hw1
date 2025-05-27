@@ -418,7 +418,6 @@ function onJsonHomeFeed(json) {
     console.log('JSON ricevuto per home feed:', json);
 
     const contentVIDEOLAYOUT = document.querySelector('.video-layout');
-    const navCentral = document.querySelector('.nav-central');
     const categorie = document.querySelector('.categorie');
 
     contentVIDEOLAYOUT.innerHTML = '';
@@ -437,7 +436,7 @@ function onJsonHomeFeed(json) {
         const divPost = document.createElement('div');
         divPost.classList.add('video-content');
 
-        // Thumbnail
+        // THUMBNAIL con redirect a post
         const divThumbnail = document.createElement('div');
         divThumbnail.classList.add('video-thumbnail');
 
@@ -449,13 +448,19 @@ function onJsonHomeFeed(json) {
         imgThumbnail.onerror = () => {
             imgThumbnail.src = 'Media/placeholder.jpg';
         };
+        imgThumbnail.dataset.id = post.id_post;
+        imgThumbnail.style.cursor = 'pointer';
+        imgThumbnail.addEventListener('click', () => {
+            window.location.href = `post.php?id_post=${encodeURIComponent(post.id_post)}`;
+        });
+
         divThumbnail.appendChild(imgThumbnail);
 
-        // Video Info
+        // INFO
         const divInfo = document.createElement('div');
         divInfo.classList.add('video-info');
 
-        // Immagine del profilo
+        // Immagine profilo con redirect a utente
         const imgProfile = document.createElement('img');
         imgProfile.alt = 'Immagine profilo canale';
         imgProfile.src = post.immagine_profilo && post.immagine_profilo.trim() !== ''
@@ -464,23 +469,38 @@ function onJsonHomeFeed(json) {
         imgProfile.onerror = () => {
             imgProfile.src = 'Media/Portrait_Placeholder.png';
         };
+        imgProfile.dataset.channel = post.canale;
+        imgProfile.style.cursor = 'pointer';
+        imgProfile.addEventListener('click', () => {
+            window.location.href = `user.php?user=${encodeURIComponent(post.canale)}`;
+        });
 
-        // Div info-channel
+        // Info canale
         const divChannelInfo = document.createElement('div');
         divChannelInfo.classList.add('video-info-channel');
 
         const h1 = document.createElement('h1');
         h1.textContent = post.title || 'Senza titolo';
+        h1.dataset.id = post.id_post;
+        h1.style.cursor = 'pointer';
+        h1.addEventListener('click', () => {
+            window.location.href = `post.php?id_post=${encodeURIComponent(post.id_post)}`;
+        });
 
         const p = document.createElement('p');
         p.textContent = post.canale || 'Canale sconosciuto';
+        p.dataset.channel = post.canale;
+        p.style.cursor = 'pointer';
+        p.addEventListener('click', () => {
+            window.location.href = `user.php?user=${encodeURIComponent(post.canale)}`;
+        });
 
         divChannelInfo.appendChild(h1);
         divChannelInfo.appendChild(p);
 
-        // Componi
         divInfo.appendChild(imgProfile);
         divInfo.appendChild(divChannelInfo);
+
         divPost.appendChild(divThumbnail);
         divPost.appendChild(divInfo);
 
