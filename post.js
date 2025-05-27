@@ -106,3 +106,53 @@ function onJson(json) {
 
 
 fetchPost();
+aggiornaCommenti();
+
+function aggiornaCommenti(){
+    const commentSection = document.querySelector('comments-section');
+
+    
+}
+
+
+
+function responseAggiungiCommento(response) {
+    console.log('Response received for comment'+ response);
+    commentForm.reset();
+    aggiornaCommenti();
+
+}
+
+const commentForm = document.getElementById('comment-form');
+commentForm.addEventListener('submit', handleCommentSubmit);
+
+function handleCommentSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(commentForm);
+
+    // Prendi id_post dall'URL
+    const params = new URLSearchParams(window.location.search);
+    const postId = params.get('id_post');
+
+    if (postId) {
+        formData.append('id_post', postId);
+
+        inviaCommento(formData);
+    } else {
+        console.error("ID post non trovato nell'URL");
+    }
+}
+
+function inviaCommento(formData) {
+    fetch('aggiungiCommento.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(responseAggiungiCommento)
+    .catch(error => console.error('Errore:', error));
+}
+
+
+;

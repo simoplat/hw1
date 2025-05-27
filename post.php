@@ -43,24 +43,16 @@
 
         <!-- Contenuto del post -->
         <main id="post-content" class="post-content">
-            <p>
-                Benvenuti nel mio blog! Questo è un post di esempio dove parlo di cose interessanti. Il layout è stato
-                pensato per essere leggibile, moderno e facilmente navigabile da dispositivi mobili e desktop.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non sapien libero. Duis eget nisl arcu.
-                Curabitur euismod ultrices lacus, in bibendum erat facilisis ut.
-            </p>
-            <p>
-                Grazie per aver letto. Lascia un commento qui sotto!
-            </p>
+            
+            <!-- contenuto del post -->
+    
         </main>
 
         <section class="comments-section">
             <h2>Commenti</h2>
 
             <!-- Form per inviare il commento -->
-            <form class="comment-box" action="salva-commento.php" method="post">
+            <form id="comment-form" class="comment-box" method="post">
                 <textarea name="commento" placeholder="Scrivi un commento..." required></textarea>
                 <button type="submit">Invia</button>
             </form>
