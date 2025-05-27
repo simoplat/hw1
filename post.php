@@ -64,12 +64,7 @@
             </form>
 
             <!-- Commenti statici di esempio -->
-            <div class="comment">
-                <p><span class="username">@utente123:</span> Ottimo articolo, complimenti!</p>
-            </div>
-            <div class="comment">
-                <p><span class="username">@mario.rossi:</span> Interessante, aspetto altri post!</p>
-            </div>
+           
         </section>
 
 

@@ -111,13 +111,51 @@ aggiornaCommenti();
 const commentForm = document.getElementById('comment-form');
 commentForm.addEventListener('submit', handleCommentSubmit);
 
+const commentSection = document.querySelector('.comments-section');
 
-function aggiornaCommenti(){
-    const commentSection = document.querySelector('.comments-section');
+function aggiornaCommenti() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id_post = urlParams.get('id_post');
 
-    
+    if (!id_post) {
+        console.error('ID del post mancante nella URL');
+        return;
+    }
+    fetch('fetchCommenti.php?id_post=' + encodeURIComponent(id_post)).
+        then(Onresponse).
+        then(onJsonCommenti);
 }
 
+
+function onJsonCommenti(json) {
+    
+    
+    if (!json) return;
+    else {
+        const oldComments = document.querySelectorAll('.comment');// per esempio
+        oldComments.forEach(comment => comment.remove());// Rimuovi tutti i div con classe "comment"
+    }
+    
+    // Aggiungi i nuovi commenti
+    json.forEach(commento => {
+ 
+        const commentDiv = document.createElement('div');
+        commentDiv.classList.add('comment');
+
+        const p = document.createElement('p');
+
+        const author = document.createElement('span');
+        author.classList.add('username');
+        author.textContent = `@${commento.username}:`;
+
+        // Aggiungi autore + testo nello stesso paragrafo
+        p.appendChild(author);
+        p.append(` ${commento.testo}`); // Spazio prima del testo del commento
+
+        commentDiv.appendChild(p);
+        commentSection.appendChild(commentDiv);
+    });
+}
 
 
 function responseAggiungiCommento(response) {

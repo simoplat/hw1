@@ -24,7 +24,6 @@ $query = "
 
 $result = mysqli_query($conn, $query);
 if (!$result) {
-    http_response_code(500);
     echo json_encode(['error' => mysqli_error($conn)]);
     exit;
 }
@@ -41,6 +40,11 @@ while ($entry = mysqli_fetch_assoc($result)) {
 }
 
 echo json_encode($arrayChannel);
+
+
+mysqli_free_result($result);
+mysqli_close($conn);
+
 
 exit;
 ?>

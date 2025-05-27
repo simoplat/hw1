@@ -57,5 +57,9 @@ echo json_encode([
     'immagine_copertina' => $post['immagine_copertina']
 ]);
 
+mysqli_free_result($result);
+mysqli_close($conn);
+
+
 exit;
 ?>
