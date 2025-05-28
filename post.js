@@ -161,8 +161,9 @@ function onJsonCommenti(json) {
 
         const p = document.createElement('p');
 
-        const author = document.createElement('span');
+        const author = document.createElement('a');
         author.classList.add('username');
+        author.href = `user.php?user=${encodeURIComponent(commento.username)}`;
         author.textContent = `@${commento.username}:`;
 
         // Aggiungi autore + testo nello stesso paragrafo
