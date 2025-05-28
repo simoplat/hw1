@@ -6,6 +6,25 @@
     }
 ?>
 
+  <?php 
+    // Carico le informazioni dell'utente loggato per visualizzarle nella sidebar (mobile)
+    $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
+    $userid = mysqli_real_escape_string($conn, $userid);
+    $query = "SELECT u.username, i.immagine_profilo
+    FROM users u
+    left JOIN immaginiutente i ON u.id=i.id_utente 
+    WHERE id = $userid;";
+    $res_1 = mysqli_query($conn, $query);
+    $userinfo = mysqli_fetch_assoc($res_1);
+    $username = $userinfo['username'];
+    $profile_picture = $userinfo['immagine_profilo'];
+    if (!$profile_picture) {
+        $profile_picture = 'media/Portrait_Placeholder.png'; // Immagine di default se non è stata caricata
+    }  
+  ?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,19 +76,14 @@
                         <p>Luigi ha messo mi piace al tuo video</p>
                     </div>
                     <button id="button-profile">
-                        <img id="profpic" src="media/Portrait_Placeholder.png"/>
+                        <img id="profpic" src="<?php echo htmlspecialchars($profile_picture); ?>" />
                     </button>
                     <div class="personal-menu hidden" >
-                        <img id="profpic-menu" src="media/Portrait_Placeholder.png"/>
-                        
-                            <?php
-                            if (isset($_SESSION['_agora_username'])) {
-                                echo "<h1> Benvenuto, " . $_SESSION['_agora_username'] . "!</h1>";
-                            }
-                            ?>
-
+                        <img id="profpic-menu" src="<?php echo htmlspecialchars($profile_picture); ?>" />
+                            <h1> Benvenuto <?php echo $username; ?></h1>
+<!-- 
                         <button class="menu-button" data-action="change-picture">
-                            <p>Cambia immagine profilo</p>
+                            <p>Cambia immagine profilo</p> -->
                         </button>
                         <button class="menu-button" data-action="settings">
                             <p>Impostazioni</p>
@@ -216,7 +230,7 @@
                     <img class="svg-white" src="media/library.svg"/>
                 </button>
             <button>
-                <img id="pic-nav-mobile" src="Media/Portrait_Placeholder.png"/>
+                <img id="pic-nav-mobile" src="<?php echo htmlspecialchars($profile_picture); ?>" />
             </button>
         </div>
 

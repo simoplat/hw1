@@ -62,31 +62,6 @@ mediaQuery.addEventListener('change', MediaChange);
 
 
 
-// funzione per cambiare immagine profilo
-
-let changeButton = document.querySelector('[data-action="change-picture"]');
-let pic = document.querySelector('#profpic');
-let menuPic = document.querySelector('#profpic-menu');
-let imageList = ['pf1.jpg', 'pf2.jpg', 'pf3.jpg']; 
-
-let lastImage = null;
-
-function randomImgChange (){
-    let randomImage;
-    do {
-        randomImage = imageList[Math.floor(Math.random() * imageList.length)];
-    } while (randomImage === lastImage);
-
-    pic.src = randomImage;
-    menuPic.src = randomImage;
-    lastImage = randomImage;
-}
-
-changeButton.addEventListener('click', randomImgChange);
-
-
-
-
 const notifyButton = document.querySelector('#notify-button');
 const notifyMenu = document.querySelector('.notify-menu');
 
@@ -519,6 +494,8 @@ function onJsonHomeFeed(json) {
 
 
 function fetchHomeContent() {
+    const navContainer = document.querySelector('.nav-central');
+    navContainer.classList.remove('hidden');
     fetch('fetchHomeContent.php').
         then(onResponse).then(onJsonHomeFeed);
 
@@ -527,8 +504,6 @@ function fetchHomeContent() {
 document.querySelector('#button-home').addEventListener('click', fetchHomeContent);
 
 fetchHomeContent();
-
-
 
 function onJsonCategories(json) {
 
