@@ -72,9 +72,15 @@ body {
 
 /* Autore */
 .author {
-  display: flex;
-  align-items: center;
-  padding: 20px;
+  padding: 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.author:hover {
+    opacity: 0.9;
 }
 
 .author-img {

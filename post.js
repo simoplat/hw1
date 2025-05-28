@@ -50,18 +50,20 @@ function onJson(json) {
     titleContainer.appendChild(postTitle);
 
     // Aggiorna immagine profilo autore
-    author.innerHTML = ''; // Pulisci tutto l'autore per ricostruire correttamente
+    // Ricrea autore come <a> che reindirizza a user.php
+    author.innerHTML = ''; // Pulisci
+
+    const authorLink = document.createElement('a');
+    authorLink.href = `user.php?user=${encodeURIComponent(json.autore)}`;
+    authorLink.classList.add('author');
+
+    // Immagine profilo
     const profileImage = document.createElement('img');
-    if (json.immagine_profilo) {
-        profileImage.src = json.immagine_profilo;
-    } else {
-        profileImage.src = 'Media/Portrait_Placeholder.png';
-    }
+    profileImage.src = json.immagine_profilo ? json.immagine_profilo : 'Media/Portrait_Placeholder.png';
     profileImage.alt = `Foto profilo di ${json.name}`;
     profileImage.classList.add('author-img');
-    author.appendChild(profileImage);
 
-    // Ricrea la sezione info autore
+    // Info autore
     const authorInfo = document.createElement('div');
     authorInfo.classList.add('author-info');
 
@@ -75,7 +77,12 @@ function onJson(json) {
 
     authorInfo.appendChild(authorName);
     authorInfo.appendChild(authorUsername);
-    author.appendChild(authorInfo);
+
+    // Costruzione finale
+    authorLink.appendChild(profileImage);
+    authorLink.appendChild(authorInfo);
+    author.appendChild(authorLink);
+
 
     // Immagine copertina
     const coverImg = document.createElement('img');
