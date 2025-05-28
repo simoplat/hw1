@@ -435,7 +435,7 @@ function onJsonHomeFeed(json) {
     for (let post of json) {
         const divPost = document.createElement('div');
         divPost.classList.add('video-content');
-        divPost.setAttribute('data-categories', post.categoria);
+        divPost.setAttribute('data-categories', post.categoria.toLowerCase());
 
         // THUMBNAIL con <a>
         const divThumbnail = document.createElement('div');
@@ -534,34 +534,25 @@ function onJsonCategories(json) {
     const navContainer = document.querySelector('.nav-central');
     navContainer.innerHTML = ''; // Svuota il contenuto esistente
 
-    // Link fissi
-    const fixedLinks = [
-        { text: 'Tutti', type: 'all' }
-    ];
+    
+        const tutti = document.createElement('a');
+        tutti.textContent = 'Tutti';
+        tutti.classList.add('button-link');
+        tutti.setAttribute('data-categories', 'tutti');
+        navContainer.appendChild(tutti);
 
-    fixedLinks.forEach(item => {
-        const link = document.createElement('a');
-        link.textContent = item.text;
-        link.classList.add('button-link');
-        link.setAttribute('data-type', item.type);
-        navContainer.appendChild(link);
+        // "Tutti" esegue fetchHomeContent
+        tutti.addEventListener('click', fetchHomeContent);
+        console.log('Aggiunto link fisso: tutti');
 
-        // Solo "Tutti" esegue fetchHomeContent
-        if (item.type === 'all') {
-            link.addEventListener('click', fetchHomeContent);
-        } else {
-            link.addEventListener('click', () => filterByCategory(item.type));
-        }
 
-        console.log('Aggiunto link fisso:', item.type);
-    });
 
     // Categorie dinamiche
     json.forEach(category => {
         const link = document.createElement('a');
         link.textContent = category;
         link.classList.add('button-link');
-        link.setAttribute('data-type', category.toLowerCase());
+        link.setAttribute('data-categories', category.toLowerCase());
         navContainer.appendChild(link);
         link.addEventListener('click', () => filterByCategory(category.toLowerCase()));
         console.log('Aggiunto link dinamico:', category.toLowerCase());
