@@ -531,21 +531,26 @@ fetchHomeContent();
 
 
 function onJsonCategories(json) {
-    const navContainer = document.querySelector('.nav-central');
-    navContainer.innerHTML = ''; // Svuota il contenuto esistente
 
     
-        const tutti = document.createElement('a');
-        tutti.textContent = 'Tutti';
-        tutti.classList.add('button-link');
-        tutti.setAttribute('data-categories', 'tutti');
-        navContainer.appendChild(tutti);
-
-        // "Tutti" esegue fetchHomeContent
-        tutti.addEventListener('click', fetchHomeContent);
-        console.log('Aggiunto link fisso: tutti');
-
-
+    const navContainer = document.querySelector('.nav-central');
+    navContainer.innerHTML = ''; // Svuota il contenuto esistente
+    
+    
+    const tutti = document.createElement('a');
+    tutti.textContent = 'Tutti';
+    tutti.classList.add('button-link');
+    tutti.setAttribute('data-categories', 'tutti');
+    navContainer.appendChild(tutti);
+    
+    // "Tutti" esegue fetchHomeContent
+    tutti.addEventListener('click', fetchHomeContent);
+    console.log('Aggiunto link fisso: tutti');
+    
+    
+    if (!json || json.length === 0) {
+        return;
+    }
 
     // Categorie dinamiche
     json.forEach(category => {
@@ -560,8 +565,20 @@ function onJsonCategories(json) {
 }
 
 
-function filterByCategory(){
-    console.log('Hai premuto il bottone categoria');
+function filterByCategory(categoria){
+    const category = categoria;
+    console.log('Categoria cliccata:', category);
+    const videoContent = document.querySelectorAll('.video-content');
+    videoContent.forEach(video => {
+      if (video.getAttribute('data-categories') === category) {
+        console.log('Mostro il video: Ho trovato corrispondenza: ' + category);
+        video.classList.remove('hidden');
+        video.classList.add('flex');
+      } else {
+        video.classList.add('hidden');
+        video.classList.remove('flex');
+      }
+    });
 }
 
  

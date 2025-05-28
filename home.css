@@ -875,3 +875,12 @@ footer:hover {
   width: auto;
   text-align: center;
 }
+
+
+.hidden {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}
