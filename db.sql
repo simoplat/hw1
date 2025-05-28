@@ -46,8 +46,11 @@ CREATE TABLE IF NOT EXISTS Commenti (
     FOREIGN KEY (id_autore) REFERENCES users(id)
 );
 
-CREATE TABLE IF NOT EXISTS Categorie (
-    id_categoria INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(255) NOT NULL UNIQUE
+CREATE TABLE IF NOT EXISTS Preferiti (
+    id_utente INT NOT NULL,
+    id_post INT NOT NULL,
+    PRIMARY KEY (id_utente, id_post),
+    FOREIGN KEY (id_utente) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_post) REFERENCES Post(id_post) ON DELETE CASCADE
 );
 
