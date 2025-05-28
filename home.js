@@ -577,8 +577,113 @@ function fetchPreferiti() {
 
 
 function onJsonPreferiti(json) {
- 
+    console.log('JSON ricevuto per home feed:', json);
+
+    const contentVIDEOLAYOUT = document.querySelector('.video-layout');
+    const categorie = document.querySelector('.categorie');
+    const navCentral = document.querySelector('.nav-central');
+    navCentral.classList.add('hidden');
+
+    contentVIDEOLAYOUT.innerHTML = '';
+    while (categorie.querySelector('h1')) {
+        categorie.querySelector('h1').remove();
+    }
+
+    if (json.length === 0) {
+        const noResult = document.createElement('h1');
+        noResult.textContent = 'Nessun Preferito trovato.';
+        contentVIDEOLAYOUT.appendChild(noResult);
+        return;
+    }
+    const h1 = document.createElement('h1');
+    h1.textContent = 'Preferiti:';
+    categorie.appendChild(h1);
+
+    for (let post of json) {
+        const divPost = document.createElement('div');
+        divPost.classList.add('video-content');
+        divPost.setAttribute('data-categories', post.categoria.toLowerCase());
+
+        // THUMBNAIL con <a>
+        const divThumbnail = document.createElement('div');
+        divThumbnail.classList.add('video-thumbnail');
+
+        const aThumbnail = document.createElement('a');
+        aThumbnail.href = `post.php?id_post=${encodeURIComponent(post.id_post)}`;
+        aThumbnail.dataset.id = post.id_post;
+
+        const imgThumbnail = document.createElement('img');
+        imgThumbnail.alt = 'Immagine copertina post';
+        imgThumbnail.src = post.percorsoMedia && post.percorsoMedia.trim() !== ''
+            ? post.percorsoMedia
+            : 'Media/placeholder.jpg';
+        imgThumbnail.onerror = () => {
+            imgThumbnail.src = 'Media/placeholder.jpg';
+        };
+
+        aThumbnail.appendChild(imgThumbnail);
+        divThumbnail.appendChild(aThumbnail);
+
+        // INFO
+        const divInfo = document.createElement('div');
+        divInfo.classList.add('video-info');
+
+        // Immagine profilo con <a>
+        const aProfile = document.createElement('a');
+        aProfile.href = `user.php?user=${encodeURIComponent(post.autore)}`;
+        aProfile.dataset.channel = post.autore;
+
+        const imgProfile = document.createElement('img');
+        imgProfile.alt = 'Immagine profilo canale';
+        imgProfile.src = post.immagine_profilo && post.immagine_profilo.trim() !== ''
+            ? post.immagine_profilo
+            : 'Media/Portrait_Placeholder.png';
+        imgProfile.onerror = () => {
+            imgProfile.src = 'Media/Portrait_Placeholder.png';
+        };
+
+        imgProfile.classList.add('channel-pic');
+        aProfile.appendChild(imgProfile);
+        divInfo.appendChild(aProfile);
+
+        // Info canale (titolo + nome)
+        const divChannelInfo = document.createElement('div');
+        divChannelInfo.classList.add('video-info-channel');
+
+        // Titolo con <a>
+        const aTitle = document.createElement('a');
+        aTitle.href = `post.php?id_post=${encodeURIComponent(post.id_post)}`;
+        aTitle.dataset.id = post.id_post;
+
+        const h1 = document.createElement('h1');
+        h1.textContent = post.title || 'Senza titolo';
+        aTitle.appendChild(h1);
+
+        // Nome canale con <a>
+        const aChannelName = document.createElement('a');
+        aChannelName.href = `user.php?user=${encodeURIComponent(post.autore)}`;
+        aChannelName.dataset.channel = post.autore;
+
+        const p = document.createElement('p');
+        p.textContent = post.autore || 'Canale sconosciuto';
+        aChannelName.appendChild(p);
+
+        divChannelInfo.appendChild(aTitle);
+        divChannelInfo.appendChild(aChannelName);
+
+        divInfo.appendChild(divChannelInfo);
+
+        divPost.appendChild(divThumbnail);
+        divPost.appendChild(divInfo);
+
+        contentVIDEOLAYOUT.appendChild(divPost);
+    }
+
+    if (contentVIDEOLAYOUT.classList.contains('column')) {
+        contentVIDEOLAYOUT.classList.remove('column');
+    }
 }
+
 
 const buttonPreferiti = document.querySelector('#buttonPreferiti');
 buttonPreferiti.addEventListener('click', fetchPreferiti);

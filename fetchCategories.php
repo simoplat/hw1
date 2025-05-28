@@ -13,12 +13,12 @@ if (!$conn) {
 
 $query = "
     SELECT DISTINCT p.categoria
-FROM Iscrizione i
-JOIN Post p ON i.seguito_id = p.id_autore
-WHERE i.follower_id = $userid
-AND p.categoria IS NOT NULL
-ORDER BY p.categoria;
-";
+    FROM Iscrizione i
+    JOIN Post p ON i.seguito_id = p.id_autore
+    WHERE i.follower_id = $userid
+    AND p.categoria IS NOT NULL
+    ORDER BY p.categoria;
+    ";
 
 $result = mysqli_query($conn, $query);
 if (!$result) {
