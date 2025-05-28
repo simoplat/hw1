@@ -194,13 +194,8 @@
 
                 <div class="categorie">
                     <nav class="nav-central">
-                        <a class="button-link" data-type="all">Tutti</a>
-                        <a class="button-link" data-type="games">Giochi</a>
-                        <a class="button-link" data-type="Musica">Musica</a>
-                        <a class="button-link" data-type="movies">Film</a>
-                        <a class="button-link" data-type="sports">Sport</a>
-                        <a class="button-link" data-type="recent-uploads">Caricamenti recenti</a>
-                        <a class="button-link" data-type="news">Notizie</a>
+                        
+                    <!-- contenuto dinamico -->
                     </nav>
                 </div>
                 

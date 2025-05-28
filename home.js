@@ -435,6 +435,7 @@ function onJsonHomeFeed(json) {
     for (let post of json) {
         const divPost = document.createElement('div');
         divPost.classList.add('video-content');
+        divPost.setAttribute('data-categories', post.categoria);
 
         // THUMBNAIL con <a>
         const divThumbnail = document.createElement('div');
@@ -526,3 +527,61 @@ function fetchHomeContent() {
 document.querySelector('#button-home').addEventListener('click', fetchHomeContent);
 
 fetchHomeContent();
+
+
+
+function onJsonCategories(json) {
+    const navContainer = document.querySelector('.nav-central');
+    navContainer.innerHTML = ''; // Svuota il contenuto esistente
+
+    // Link fissi
+    const fixedLinks = [
+        { text: 'Tutti', type: 'all' }
+    ];
+
+    fixedLinks.forEach(item => {
+        const link = document.createElement('a');
+        link.textContent = item.text;
+        link.classList.add('button-link');
+        link.setAttribute('data-type', item.type);
+        navContainer.appendChild(link);
+
+        // Solo "Tutti" esegue fetchHomeContent
+        if (item.type === 'all') {
+            link.addEventListener('click', fetchHomeContent);
+        } else {
+            link.addEventListener('click', () => filterByCategory(item.type));
+        }
+
+        console.log('Aggiunto link fisso:', item.type);
+    });
+
+    // Categorie dinamiche
+    json.forEach(category => {
+        const link = document.createElement('a');
+        link.textContent = category;
+        link.classList.add('button-link');
+        link.setAttribute('data-type', category.toLowerCase());
+        navContainer.appendChild(link);
+        link.addEventListener('click', () => filterByCategory(category.toLowerCase()));
+        console.log('Aggiunto link dinamico:', category.toLowerCase());
+    });
+}
+
+
+function filterByCategory(){
+    console.log('Hai premuto il bottone categoria');
+}
+
+ 
+
+function fetchCategories(){
+    fetch('fetchCategories.php')
+        .then(onResponse)
+        .then(onJsonCategories);
+}
+
+
+fetchCategories();
+
+
