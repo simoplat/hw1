@@ -25,6 +25,18 @@ function onJson(json) {
     const authorNameElem = document.querySelector('.author-name');
     const authorUsernameElem = document.querySelector('.author-username');
     const cover = document.querySelector('.cover');
+    const preferitoBtn = document.querySelector('.preferito-btn');
+    const preferitoText = preferitoBtn.querySelector('.btn-text');
+
+    if (json?.preferito) {
+        preferitoText.textContent = 'Rimuovi dai preferiti';
+        preferitoBtn.dataset.set = 'yes';
+    } else {
+        preferitoText.textContent = 'Aggiungi ai preferiti';
+        preferitoBtn.dataset.set = 'no';
+    }
+
+
 
     if (!postContent || !titleContainer || !authorNameElem || !authorUsernameElem || !author) {
         console.error('Contenitori mancanti nel DOM');

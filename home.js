@@ -503,6 +503,7 @@ function fetchHomeContent() {
 
 document.querySelector('#button-home').addEventListener('click', fetchHomeContent);
 
+
 fetchHomeContent();
 
 function onJsonCategories(json) {
@@ -568,3 +569,16 @@ function fetchCategories(){
 fetchCategories();
 
 
+function fetchPreferiti() {
+    fetch('fetchPreferiti.php')
+        .then(onResponse)
+        .then(onJsonPreferiti);
+}
+
+
+function onJsonPreferiti(json) {
+ 
+}
+
+const buttonPreferiti = document.querySelector('#buttonPreferiti');
+buttonPreferiti.addEventListener('click', fetchPreferiti);

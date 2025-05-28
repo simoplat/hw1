@@ -167,7 +167,7 @@ body {
   margin-right: 5px;
 }
 
-#preferito-btn {
+.preferito-btn {
   display: flex;              /* testo + icona in fila */
   align-items: center;        /* centrati verticalmente */
   gap: 8px;                   /* spazio tra testo e icona */
@@ -185,11 +185,11 @@ body {
   transition: background-color 0.3s ease;
 }
 
-#preferito-btn:hover {
+.preferito-btn:hover {
   background-color: #0056b3;
 }
 
-#preferito-btn .icon {
+.preferito-btn .icon {
   width: 20px;
   height: 20px;
   max-width: 20px;

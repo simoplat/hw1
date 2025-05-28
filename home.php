@@ -139,7 +139,7 @@
                     </h1>
 
                     <div class="sidebar-h" data-type="Tu">
-                        <button>
+                        <button id="buttonPreferiti">
                             <div class="sidebar-inside">
                                 <div class="sdbar-ins-img">
                                 <img src="media/heart_full.svg"/>

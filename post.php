@@ -56,10 +56,11 @@
 
         </main>
 
-        <button id="preferito-btn" data-set="NO">
-            Aggiungi ai preferiti
-            <img src="Media/heart_full.svg" alt="Preferito" class="icon" />
+        <button class="preferito-btn" data-set="no">
+            <span class="btn-text">Aggiungi ai preferiti</span>
+            <img src="Media/heart_full.svg" alt="Preferito" class="icon">
         </button>
+
 
 
         <section class="comments-section">
