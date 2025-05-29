@@ -226,7 +226,20 @@ function inviaCommento(formData) {
 }
 
 function togglePreferito() {
-    console.log('Toggling preferito');
-    /* const urlParams = new URLSearchParams(window.location.search);
-    const id_post = urlParams.get('id_post'); */
+    const urlParams = new URLSearchParams(window.location.search);
+    const id_post = urlParams.get('id_post');
+    console.log('TOGGLE id POST: ' + id_post);
+
+    if (id_post) {
+        const formData = new FormData();
+        formData.append('id_post', id_post);
+
+        fetch('togglePreferito.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+    } else {
+        console.error("ID post non trovato nell'URL");
+    }
 }
