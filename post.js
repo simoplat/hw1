@@ -27,6 +27,7 @@ function onJson(json) {
     const cover = document.querySelector('.cover');
     const preferitoBtn = document.querySelector('.preferito-btn');
     const preferitoText = preferitoBtn.querySelector('.btn-text');
+  
 
     if (json?.preferito) {
         preferitoText.textContent = 'Rimuovi dai preferiti';
@@ -36,7 +37,7 @@ function onJson(json) {
         preferitoBtn.dataset.set = 'no';
     }
 
-
+    if(preferitoBtn) preferitoBtn.addEventListener('click',togglePreferito);
 
     if (!postContent || !titleContainer || !authorNameElem || !authorUsernameElem || !author) {
         console.error('Contenitori mancanti nel DOM');
@@ -224,5 +225,8 @@ function inviaCommento(formData) {
     .catch(error => console.error('Errore:', error));
 }
 
-
-;
+function togglePreferito() {
+    console.log('Toggling preferito');
+    /* const urlParams = new URLSearchParams(window.location.search);
+    const id_post = urlParams.get('id_post'); */
+}
