@@ -72,8 +72,6 @@
                     </button>
                     <div class="notify-menu hidden"  id="notify-btn">
                         <h1>Notifiche</h1>
-                        <p>Bowser si è iscritto al tuo canale</p>
-                        <p>Luigi ha messo mi piace al tuo video</p>
                     </div>
                     <button id="button-profile">
                         <img id="profpic" src="<?php echo htmlspecialchars($profile_picture); ?>" />

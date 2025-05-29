@@ -66,26 +66,58 @@ const notifyButton = document.querySelector('#notify-button');
 const notifyMenu = document.querySelector('.notify-menu');
 
 function toggleNotifyMenu () {
-
     if (notifyMenu.classList.contains('hidden')) {
-        if(!personalMenu.classList.contains('hidden')){
+        if (!personalMenu.classList.contains('hidden')) {
             personalMenu.classList.add('hidden');
         }
-        if (notifyMenu.querySelectorAll('p').length === 0) {
-            let noNotification = document.createElement('p');
-            noNotification.textContent = 'Nessuna notifica';
-            // noNotification.classList.add('sdbar-ins-txt');
-            notifyMenu.appendChild(noNotification);
-        }
+
+        clearNotifyMenu();
+        fetchNotifications();
+
         notifyMenu.classList.remove('hidden');
         console.log('Setto display show');
     } else {
         notifyMenu.classList.add('hidden');
-        console.log("Setto display hidden")
+        console.log("Setto display hidden");
     }
-};
+}
 
 notifyButton.addEventListener('click', toggleNotifyMenu);
+
+function fetchNotifications() {
+    fetch('fetchNotification.php')
+        .then(onResponse)
+        .then(onJsonNotifications)
+        .catch(error => console.error('Errore nel fetch:', error));
+}
+
+function onJsonNotifications(json) {
+    console.log('OnJsonNotifications:', json);
+
+    if (!json.followers || json.followers.length === 0) {
+        const p = document.createElement('p');
+        p.textContent = 'Nessuna notifica';
+        notifyMenu.appendChild(p);
+    } else {
+        json.followers.forEach(username => {
+            const p = document.createElement('p');
+            p.textContent = `@${username} si è iscritto al tuo canale`;
+            notifyMenu.appendChild(p);
+        });
+    }
+}
+
+function clearNotifyMenu() {
+    while (notifyMenu.querySelector('p')) {
+        notifyMenu.querySelector('p').remove();
+    }
+}
+
+function onResponse(response) {
+    return response.json();
+}
+
+
 
 
 
