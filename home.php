@@ -70,7 +70,7 @@
                     <button id="notify-button">
                         <img id="notify-pic" src="media/notifications-1.png"/>
                     </button>
-                    <div class="notify-menu hidden" >
+                    <div class="notify-menu hidden"  id="notify-btn">
                         <h1>Notifiche</h1>
                         <p>Bowser si è iscritto al tuo canale</p>
                         <p>Luigi ha messo mi piace al tuo video</p>
@@ -81,15 +81,14 @@
                     <div class="personal-menu hidden" >
                         <img id="profpic-menu" src="<?php echo htmlspecialchars($profile_picture); ?>" />
                             <h1> Benvenuto <?php echo $username; ?></h1>
-<!-- 
-                        <button class="menu-button" data-action="change-picture">
-                            <p>Cambia immagine profilo</p> -->
+                        <!-- <button class="menu-button" data-action="change-picture">
+                            <p>Cambia immagine profilo</p>
                         </button>
                         <button class="menu-button" data-action="settings">
                             <p>Impostazioni</p>
-                        </button>
+                        </button> -->
                         <button class="menu-button" data-action="preferences">
-                            <p>Preferenze account</p>
+                            <a href="user.php?user=<?php echo urlencode($username); ?>">Il tuo account</a>
                         </button>
                         <button class="menu-button" data-action="contact">
                             <a href='logout.php'>Log out</a>
@@ -176,7 +175,7 @@
                         </button>
                     </div> -->
                     <div class="sidebar-h" data-type="Tu">
-                        <button>
+                        <!-- <button>
                             <div class="sidebar-inside">
                                 <div class="sdbar-ins-img">
                                 <img src="media/like.svg"/>
@@ -185,7 +184,7 @@
                                         <p>Mi piace</p>
                                     </div>
                             </div>
-                        </button>
+                        </button> -->
                     </div>
                     <h1 data-type="channel">
                         Le tue iscrizioni
