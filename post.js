@@ -29,13 +29,24 @@ function onJson(json) {
     const preferitoText = preferitoBtn.querySelector('.btn-text');
   
 
+    const heartIcon = document.getElementById('heart-icon');
+
     if (json?.preferito) {
         preferitoText.textContent = 'Rimuovi dai preferiti';
         preferitoBtn.dataset.set = 'yes';
+        if (heartIcon) {
+            heartIcon.src = 'Media/heart_full.svg'; // o .svg se usi svg
+            heartIcon.alt = 'Rimuovi dai preferiti';
+        }
     } else {
         preferitoText.textContent = 'Aggiungi ai preferiti';
         preferitoBtn.dataset.set = 'no';
+        if (heartIcon) {
+            heartIcon.src = 'Media/heart_empty.svg';
+            heartIcon.alt = 'Aggiungi ai preferiti';
+        }
     }
+
 
     if(preferitoBtn) preferitoBtn.addEventListener('click',togglePreferito);
 
@@ -238,8 +249,36 @@ function togglePreferito() {
             method: 'POST',
             body: formData
         })
-            .then(response => response.json())
+            .then(response => response.json()).then(updatePreferitoUI)
     } else {
         console.error("ID post non trovato nell'URL");
     }
+
+}
+
+
+
+
+function updatePreferitoUI(json) {
+    console.log('Preferito aggiornato:', json);
+    const preferitoBtn = document.querySelector('.preferito-btn');
+    const spanPref = document.querySelector('.btn-text');
+    const preferitoIcon = document.getElementById('heart-icon');
+
+    console.log('Preferito Button:', preferitoBtn);
+    if(!preferitoBtn || !spanPref) {
+        console.error('Preferito non trovato nel DOM');
+        return;
+    }
+
+    if (json.preferito === true) {
+        spanPref.textContent = 'Rimuovi dai preferiti';
+        preferitoBtn.dataset.set = 'yes';
+        preferitoIcon.src = 'Media/heart_full.svg';
+    } else if (json.preferito === false) {
+        spanPref.textContent = 'Aggiungi ai preferiti';
+        preferitoBtn.dataset.set = 'no';
+        preferitoIcon.src = 'Media/heart_empty.svg';
+    }
+
 }

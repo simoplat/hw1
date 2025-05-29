@@ -176,7 +176,7 @@ body {
   margin: 20px auto;          /* centro bottone nella pagina */
   
   padding: 10px 20px;
-  background-color: #007BFF;
+  background-color: #cc0000;
   color: white;
   border: none;
   border-radius: 20px;
@@ -186,7 +186,7 @@ body {
 }
 
 .preferito-btn:hover {
-  background-color: #0056b3;
+  background-color: #7c0000;
 }
 
 .preferito-btn .icon {
@@ -198,6 +198,18 @@ body {
   display: block;   /* evita spazi strani e dimensioni sbagliate */
 }
 
+#heart-icon {
+    filter: brightness(0) invert(1);
+}
+
+#heart-icon {
+    transition: transform 0.2s ease;
+}
+
+#heart-icon:hover {
+    transform: scale(1.3);
+    cursor: pointer;
+}
 
 
 /* Footer */

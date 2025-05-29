@@ -41,7 +41,7 @@ if (mysqli_num_rows($res) > 0) {
     // Il post è già tra i preferiti, lo rimuovo
     $deleteQuery = "DELETE FROM Preferiti WHERE id_utente = $user_id AND id_post = $post_id";
     if (mysqli_query($conn, $deleteQuery)) {
-        echo json_encode(['preferito' => 'Tolto dai preferiti']);
+        echo json_encode(['preferito' => false]);
     } else {
         echo json_encode(['error' => 'Errore durante la rimozione del preferito']);
     }
@@ -49,7 +49,7 @@ if (mysqli_num_rows($res) > 0) {
     // Il post non è tra i preferiti, lo aggiungo
     $insertQuery = "INSERT INTO Preferiti (id_utente, id_post) VALUES ($user_id, $post_id)";
     if (mysqli_query($conn, $insertQuery)) {
-        echo json_encode(['preferito' => 'Aggiunto ai preferiti']);
+        echo json_encode(['preferito' => true]);
     } else {
         echo json_encode(['error' => 'Errore durante l\'aggiunta del preferito']);
     }

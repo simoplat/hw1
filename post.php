@@ -58,7 +58,7 @@
 
         <button class="preferito-btn" data-set="no">
             <span class="btn-text">Aggiungi ai preferiti</span>
-            <img src="Media/heart_full.svg" alt="Preferito" class="icon">
+            <img src="Media/heart_full.svg" alt="Preferito" class="icon" id="heart-icon" />
         </button>
 
 
