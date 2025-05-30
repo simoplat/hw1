@@ -50,14 +50,12 @@
 
                 <div class="nav-center">
                    <form id="search-form">
-                        <input type="text" placeholder="Cerca" id="search-bar">
-                        <button id="search-button">
-                            <img id="search-icon" src="media/search.svg"/>
+                        <input type="text" name="q" placeholder="Cerca" id="search-bar" required>
+                        <button type="submit" id="search-button">
+                            <img id="search-icon" src="media/search.svg" alt="Cerca"/>
                         </button>
-                        <!-- <button id="mic-button">
-                            <img id="mic-img" src="media/microphone.png"/>
-                        </button> -->
                     </form>
+
                 </div>
 
                 <div class="nav-right">

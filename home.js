@@ -149,9 +149,6 @@ nascontiContenuti('channel');
 
 
 
-const API_KEY = 'secret'; 
-const maxResults = 30;
-
 
 function onJson(json){
     console.log('JSON ricevuto');
@@ -227,17 +224,22 @@ function onResponse(response) {
 
 
 
-function search (event){
+function search(event) {
     event.preventDefault();
-    const searchInput = document.querySelector('#search-bar').value;
-    console.log('Hai cercato: '+ searchInput);
-    const encode = encodeURIComponent(searchInput);
-    console.log('Encoding:' + encode);
-    restUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + encode + '&type=video&maxResults=' + maxResults+ '&key=' + API_KEY;
-    console.log('URL:' + restUrl);
-    fetch(restUrl).then(onResponse).then(onJson);
-    
+
+    const form = document.querySelector('#search-form');
+    const data = new FormData(form);
+
+    fetch('youtubeAPI.php', {
+        method: 'POST',
+        body: data 
+    })
+    .then(onResponse)
+    .then(onJson);
 }
+
+
+
 const form = document.querySelector('#search-form');
 form.addEventListener('submit', search);
 
