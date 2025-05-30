@@ -13,6 +13,7 @@ spotify();
 function spotify() {
     $client_id =     "";
     $client_secret = "";
+    $nomeUtente =   ""; // Nome utente Spotify
 
     // ACCESS TOKEN
     $ch = curl_init();
@@ -28,7 +29,7 @@ function spotify() {
 
     //$query = urlencode($_GET["q"]);
     //$url = 'https://api.spotify.com/v1/search?type=track&q='.$query;
-    $url = 'https://api.spotify.com/v1/users/ {nomeUtente} /playlists?limit=20';
+    $url = "https://api.spotify.com/v1/users/{$nomeUtente}/playlists?limit=20";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

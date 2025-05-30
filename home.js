@@ -244,7 +244,7 @@ form.addEventListener('submit', search);
 ////API SPOTIFY N.2 oauth 2.0
 
 
-function onJsonSpotify(json) {
+function onJsonSpotifyPlaylist(json) {
     const contentVIDEOLAYOUT = document.querySelector('.video-layout');
     contentVIDEOLAYOUT.innerHTML = '';
 
@@ -312,7 +312,7 @@ function playlistSpotify(event)
   event.preventDefault();
   console.log('Ho ricevuto il click sul bottone playlist');
   // Esegui la richiesta
-    fetch('spotify.php').then(searchResponse).then(onJsonSpotify);
+    fetch('spotify.php').then(searchResponse).then(onJsonSpotifyPlaylist);
 
 }
 
