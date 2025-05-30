@@ -289,44 +289,21 @@ function playlistSpotify(event)
   event.preventDefault();
   console.log('Ho ricevuto il click sul bottone playlist');
   // Esegui la richiesta
-  fetch("https://api.spotify.com/v1/search?q=ROCK&type=playlist",
-    {
-      headers:
-      {
-        'Authorization': 'Bearer ' + token
-      }
-    }
-  ).then(onResponse).then(onJsonSpotify);
+    fetch('spotify.php').then(searchResponse).then(onJsonSpotify);
+
 }
 
 
-function onTokenJson(json)
+function searchResponse(response)
 {
-  token = json.access_token;
+ 
+    console.log('Risposta ricevuta da spotify.php');
+    return response.json();
+
+
 }
 
-function onTokenResponse(response)
-{
-  return response.json();
-}
 
-
-const client_id = 'secret';
-const client_secret = 'secret';
-const myUserId = 'secret';
-let token;
-
-fetch("https://accounts.spotify.com/api/token",
-	{
-   method: "post",
-   body: 'grant_type=client_credentials',
-   headers:
-   {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Authorization': 'Basic ' + btoa(client_id + ':' + client_secret)
-   }
-  }
-).then(onTokenResponse).then(onTokenJson);
 
 
 const playlistButton = document.querySelector('#buttonPlaylist');
