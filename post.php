@@ -44,8 +44,8 @@
         <section class="author">
             <img src="media/Portrait_Placeholder.png" alt="Autore" class="author-img" />
             <div class="author-info">
-                <p class="author-name">Simone Platania</p>
-                <p class="author-username">@simone_pl</p>
+                <p class="author-name">Autore</p>
+                <p class="author-username">@autore</p>
             </div>
         </section>
 
