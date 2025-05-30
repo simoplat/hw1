@@ -244,42 +244,65 @@ form.addEventListener('submit', search);
 ////API SPOTIFY N.2 oauth 2.0
 
 
-function onJsonSpotify(json){
+function onJsonSpotify(json) {
     const contentVIDEOLAYOUT = document.querySelector('.video-layout');
     contentVIDEOLAYOUT.innerHTML = '';
-    const centralLayout = document.querySelector('.central-layout');
+
     const navCentral = document.querySelector('.nav-central');
     navCentral.classList.add('hidden');
-    const categorie = document.querySelector('.categorie');
-    if(!categorie.querySelector('h1')) {
 
-        let title = document.createElement('h1');
-        title.textContent = 'Playlists:';
-        categorie.appendChild(title);
+    const h1sInNavCentral = navCentral.querySelectorAll('h1');
+    h1sInNavCentral.forEach(h1 => h1.remove());
+
+    const categorie = document.querySelector('.categorie');
+
+    const existingH1 = categorie.querySelector('h1');
+    if (existingH1) {
+        existingH1.remove();
     }
-    for (let i = 0; i < json.playlists.items.length; i++) {
-        const item = json.playlists.items[i];
+
+    // Aggiunge nuovo <h1> con testo "Playlists:"
+    const newTitle = document.createElement('h1');
+    newTitle.textContent = 'Playlists:';
+    categorie.appendChild(newTitle);
+
+    for (let i = 0; i < json.items.length; i++) {
+        const item = json.items[i];
         if (item && item.name) {
             console.log(item.name);
+
+            // Titolo playlist
             let playlistName = document.createElement('h2');
             playlistName.textContent = item.name;
+
+            // Contenitore principale
             let videoContent = document.createElement('div');
             videoContent.classList.add('video-content');
+
+            // Immagine
             let imgElement = document.createElement('img');
-            imgElement.src = item.images[0].url;
+            imgElement.src = item.images[0]?.url || '';
+
+            // Thumbnail
             let divThumbnail = document.createElement('div');
             divThumbnail.classList.add('video-thumbnail');
+            divThumbnail.appendChild(imgElement);
+
+            // Info playlist
             let divVideoInfo = document.createElement('div');
             divVideoInfo.classList.add('video-info');
             divVideoInfo.appendChild(playlistName);
-            divThumbnail.appendChild(imgElement);
+
+            // Assembla tutto
             videoContent.appendChild(divThumbnail);
             videoContent.appendChild(divVideoInfo);
 
+            // Aggiunge al layout
             contentVIDEOLAYOUT.appendChild(videoContent);
         }
     }
-    
+
+
 }
 
 

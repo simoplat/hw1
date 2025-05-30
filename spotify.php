@@ -26,10 +26,9 @@ function spotify() {
     $token=json_decode(curl_exec($ch), true);
     curl_close($ch);    
 
-    // QUERY EFFETTIVA
     //$query = urlencode($_GET["q"]);
     //$url = 'https://api.spotify.com/v1/search?type=track&q='.$query;
-    $url = 'https://api.spotify.com/v1/search?q=ROCK&type=playlist';
+    $url = 'https://api.spotify.com/v1/users/ {nomeUtente} /playlists?limit=20';
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
