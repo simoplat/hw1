@@ -7,10 +7,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="index.js" defer></script>
+
 </head>
 
 <body>
-  <header>
+  <header id="main-header">
     <nav>
       <div id="logo">
         <img src="Media/YouTube-logo_white.png" alt="Logo YouBlog">

@@ -14,7 +14,6 @@ body {
 
 /* Header con immagine di sfondo */
 header {
-  background-image: url('Media/welcomeWallpaper.jpg'); /* <-- Sostituisci con la tua immagine */
   background-size: cover;
   background-position: center;
   color: white;
@@ -24,6 +23,14 @@ header {
   flex-direction: column;
   justify-content: space-between;
 }
+
+#main-header {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 1s ease-in-out;
+}
+
 
 /* Sovrapposizione scura leggibile */
 .header-overlay {
