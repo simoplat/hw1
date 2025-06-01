@@ -1,0 +1,155 @@
+/* Reset base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header con immagine di sfondo */
+header {
+  background-image: url('Media/welcomeWallpaper.jpg'); /* <-- Sostituisci con la tua immagine */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Sovrapposizione scura leggibile */
+.header-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 30px 20px 80px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+}
+
+/* Logo con immagine */
+#logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: rgb(252, 8, 8);
+}
+
+#logo img {
+  width: 200px;
+  height: auto;
+}
+
+/* Link di navigazione */
+#links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+#links a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+#links a:hover {
+  color: #ffd700;
+}
+
+.button {
+  background-color: #ff0000;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+#separator {
+  height: 24px;
+  width: 1px;
+  background-color: white;
+  margin: 0 10px;
+}
+
+/* Hamburger menu (base per responsive) */
+#menu {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+#menu div {
+  width: 25px;
+  height: 3px;
+  background: white;
+}
+
+/* Footer */
+footer {
+  background-color: #222;
+  color: white;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-col strong {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.footer-col p {
+  margin: 5px 0;
+  color: #ccc;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+ 
+  #logo img{
+    display: none;
+  }
+  #links.visible {
+    display: flex;
+  }
+
+
+}
