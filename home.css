@@ -218,10 +218,6 @@ header {
     margin-left: 10px;
   }
 
-  .nav-center input{
-    display: none;
-  }
-
   .nav-center{
     justify-content: right;
   }

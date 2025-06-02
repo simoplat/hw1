@@ -12,6 +12,5 @@
     index = (index + 1) % images.length;
   }
 
-  // Inizializza il carosello e cambia immagine ogni 5 secondi
   changeBackground();
   setInterval(changeBackground, 5000);

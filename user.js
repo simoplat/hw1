@@ -9,11 +9,9 @@ function getPostUrl(id_post) {
 }
 
 function fetchChannelContent() {
-    // Prendi il valore dell'utente dalla query string
     const urlParams = new URLSearchParams(window.location.search);
     const username = urlParams.get('user'); // es: 'yosshi123'
 
-    // Costruisci la richiesta con il parametro
     let url = 'fetchChannelContent.php';
     if (username) {
         url += '?user=' + encodeURIComponent(username);
@@ -32,15 +30,12 @@ function onJson(json) {
 if (json.profilo && json.profilo.name && json.profilo.surname) {
     const userDetails = document.querySelector('.user-details');
 
-    // Pulisci eventuali elementi esistenti
     userDetails.innerHTML = '';
 
-    // Crea H2 con nome e cognome
     const nameElem = document.createElement('h2');
     nameElem.id = 'username';
     nameElem.textContent = json.profilo.name + ' ' + json.profilo.surname;
 
-    // Crea P con username (se presente)
     const usernameElem = document.createElement('p');
     usernameElem.id = 'user-tag';
     if (json.profilo.username) {
@@ -49,7 +44,6 @@ if (json.profilo && json.profilo.name && json.profilo.surname) {
         usernameElem.textContent = '@utente_sconosciuto';
     }
 
-    // Inserisci nel DOM
     userDetails.appendChild(nameElem);
     userDetails.appendChild(usernameElem);
 }

@@ -24,6 +24,11 @@ buttonMenuMobile.addEventListener('click', toggleMenuSidebar);
 const buttonProfile = document.querySelector('#button-profile');
 const personalMenu = document.querySelector('.personal-menu');
 
+const buttonProfileMobile = document.querySelector('#button-profile-mobile');
+if (buttonProfileMobile) {
+    buttonProfileMobile.addEventListener('click', toggleProfMenu);
+}
+
 function toggleProfMenu(){
     
 
@@ -263,7 +268,7 @@ function onJsonSpotifyPlaylist(json) {
         existingH1.remove();
     }
 
-    // Aggiunge nuovo <h1> con testo "Playlists:"
+    //<h1> "Playlists:"
     const newTitle = document.createElement('h1');
     newTitle.textContent = 'Playlists:';
     categorie.appendChild(newTitle);
@@ -273,33 +278,27 @@ function onJsonSpotifyPlaylist(json) {
         if (item && item.name) {
             console.log(item.name);
 
-            // Titolo playlist
             let playlistName = document.createElement('h2');
             playlistName.textContent = item.name;
 
-            // Contenitore principale
             let videoContent = document.createElement('div');
             videoContent.classList.add('video-content');
 
-            // Immagine
             let imgElement = document.createElement('img');
             imgElement.src = item.images[0]?.url || '';
 
-            // Thumbnail
             let divThumbnail = document.createElement('div');
             divThumbnail.classList.add('video-thumbnail');
             divThumbnail.appendChild(imgElement);
 
-            // Info playlist
             let divVideoInfo = document.createElement('div');
             divVideoInfo.classList.add('video-info');
             divVideoInfo.appendChild(playlistName);
 
-            // Assembla tutto
             videoContent.appendChild(divThumbnail);
             videoContent.appendChild(divVideoInfo);
 
-            // Aggiunge al layout
+            
             contentVIDEOLAYOUT.appendChild(videoContent);
         }
     }
@@ -313,7 +312,6 @@ function playlistSpotify(event)
 {
   event.preventDefault();
   console.log('Ho ricevuto il click sul bottone playlist');
-  // Esegui la richiesta
     fetch('spotify.php').then(searchResponse).then(onJsonSpotifyPlaylist);
 
 }
@@ -346,8 +344,7 @@ function onJsonChannels(json) {
        channelDivCreator.innerHTML = '';
 
        json.forEach(channel => {
-          // Creo un nuovo div
-          // Creo il div principale con classe e attributo data-type
+
 const sidebarDiv = document.createElement('div');
 sidebarDiv.classList.add('sidebar-h');
 sidebarDiv.setAttribute('data-type', 'channel');
@@ -446,7 +443,6 @@ function onJsonHomeFeed(json) {
         divPost.classList.add('video-content');
         divPost.setAttribute('data-categories', post.categoria.toLowerCase());
 
-        // THUMBNAIL con <a>
         const divThumbnail = document.createElement('div');
         divThumbnail.classList.add('video-thumbnail');
 
@@ -466,11 +462,9 @@ function onJsonHomeFeed(json) {
         aThumbnail.appendChild(imgThumbnail);
         divThumbnail.appendChild(aThumbnail);
 
-        // INFO
         const divInfo = document.createElement('div');
         divInfo.classList.add('video-info');
 
-        // Immagine profilo con <a>
         const aProfile = document.createElement('a');
         aProfile.href = `user.php?user=${encodeURIComponent(post.canale)}`;
         aProfile.dataset.channel = post.canale;
@@ -488,11 +482,9 @@ function onJsonHomeFeed(json) {
         aProfile.appendChild(imgProfile);
         divInfo.appendChild(aProfile);
 
-        // Info canale (titolo + nome)
         const divChannelInfo = document.createElement('div');
         divChannelInfo.classList.add('video-info-channel');
 
-        // Titolo con <a>
         const aTitle = document.createElement('a');
         aTitle.href = `post.php?id_post=${encodeURIComponent(post.id_post)}`;
         aTitle.dataset.id = post.id_post;
@@ -501,7 +493,6 @@ function onJsonHomeFeed(json) {
         h1.textContent = post.title || 'Senza titolo';
         aTitle.appendChild(h1);
 
-        // Nome canale con <a>
         const aChannelName = document.createElement('a');
         aChannelName.href = `user.php?user=${encodeURIComponent(post.canale)}`;
         aChannelName.dataset.channel = post.canale;
@@ -537,6 +528,10 @@ function fetchHomeContent() {
 
 document.querySelector('#button-home').addEventListener('click', fetchHomeContent);
 
+const buttonHomeMobile = document.getElementById('button-home-mobile');
+if (buttonHomeMobile) {
+    buttonHomeMobile.addEventListener('click', fetchHomeContent);
+}
 
 fetchHomeContent();
 
@@ -544,7 +539,7 @@ function onJsonCategories(json) {
 
     
     const navContainer = document.querySelector('.nav-central');
-    navContainer.innerHTML = ''; // Svuota il contenuto esistente
+    navContainer.innerHTML = ''; 
     
     
     const tutti = document.createElement('a');
@@ -553,7 +548,6 @@ function onJsonCategories(json) {
     tutti.setAttribute('data-categories', 'tutti');
     navContainer.appendChild(tutti);
     
-    // "Tutti" esegue fetchHomeContent
     tutti.addEventListener('click', fetchHomeContent);
     console.log('Aggiunto link fisso: tutti');
     
@@ -562,7 +556,6 @@ function onJsonCategories(json) {
         return;
     }
 
-    // Categorie dinamiche
     json.forEach(category => {
         const link = document.createElement('a');
         link.textContent = category;
@@ -680,11 +673,9 @@ function onJsonPreferiti(json) {
         aProfile.appendChild(imgProfile);
         divInfo.appendChild(aProfile);
 
-        // Info canale (titolo + nome)
         const divChannelInfo = document.createElement('div');
         divChannelInfo.classList.add('video-info-channel');
 
-        // Titolo con <a>
         const aTitle = document.createElement('a');
         aTitle.href = `post.php?id_post=${encodeURIComponent(post.id_post)}`;
         aTitle.dataset.id = post.id_post;
@@ -693,7 +684,6 @@ function onJsonPreferiti(json) {
         h1.textContent = post.title || 'Senza titolo';
         aTitle.appendChild(h1);
 
-        // Nome canale con <a>
         const aChannelName = document.createElement('a');
         aChannelName.href = `user.php?user=${encodeURIComponent(post.autore)}`;
         aChannelName.dataset.channel = post.autore;

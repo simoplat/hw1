@@ -4,14 +4,13 @@ if (!$userid = checkAuth()) exit;
 
 header('Content-Type: application/json');
 
-// Connessione al database
+// Connessione
 $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
 if (!$conn) {
     echo json_encode(['error' => 'Errore di connessione al database']);
     exit;
 }
 
-// Leggi l'id_post dalla richiesta GET
 if (!isset($_GET['id_post']) || !is_numeric($_GET['id_post'])) {
     echo json_encode(['error' => 'ID post non valido']);
     exit;
@@ -19,7 +18,6 @@ if (!isset($_GET['id_post']) || !is_numeric($_GET['id_post'])) {
 
 $id_post = intval($_GET['id_post']);
 
-// Query con join per recuperare anche il nome utente dell'autore
 $query = "
   SELECT 
     Post.id_post, 
@@ -57,7 +55,7 @@ if (!$post = mysqli_fetch_assoc($result)) {
     exit;
 }
 
-// Restituisci il post in formato JSON
+//JSON
 echo json_encode([
     'id_post'       => (int) $post['id_post'],
     'title'         => $post['title'],

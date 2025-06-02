@@ -93,7 +93,6 @@ if (count($posts) === 0) {
     }
 }
 
-// Output finale
 echo json_encode([
     'profilo' => $profilo,
     'post' => $posts

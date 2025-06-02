@@ -218,13 +218,13 @@
         </div>
 
         <div class="mobile-navbar">
-            <button>
-                <img class="svg-white" src="media/home.svg"/>
+            <button id="button-home-mobile">
+                    <img class="svg-white" src="media/home.svg"/>
             </button>
                 <button id="button-menu-mobile">
                     <img class="svg-white" src="media/library.svg"/>
                 </button>
-            <button>
+            <button id="button-profile-mobile">
                 <img id="pic-nav-mobile" src="<?php echo htmlspecialchars($profile_picture); ?>" />
             </button>
         </div>

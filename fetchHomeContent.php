@@ -52,7 +52,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 
-// Restituisci i post in formato JSON
+
 mysqli_free_result($result);
 mysqli_close($conn);
 echo json_encode($posts);
