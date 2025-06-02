@@ -168,12 +168,12 @@ body {
 }
 
 .preferito-btn {
-  display: flex;              /* testo + icona in fila */
-  align-items: center;        /* centrati verticalmente */
-  gap: 8px;                   /* spazio tra testo e icona */
+  display: flex;         
+  align-items: center;      
+  gap: 8px;                 
   
-  width: max-content;         /* larghezza minima per contenuto */
-  margin: 20px auto;          /* centro bottone nella pagina */
+  width: max-content;         
+  margin: 20px auto;          
   
   padding: 10px 20px;
   background-color: #cc0000;

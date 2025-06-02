@@ -45,6 +45,10 @@
                     </div>
                 </div>
 
+                <button class="btn-iscrizione" data-set="no">
+                    <span class="btn-text">Iscriviti al canale</span>
+                </button>
+
                 <div id="profile-content">
                     <!-- <h3>Post recenti</h3>
                     <div class="post">

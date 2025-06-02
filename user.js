@@ -10,7 +10,7 @@ function getPostUrl(id_post) {
 
 function fetchChannelContent() {
     const urlParams = new URLSearchParams(window.location.search);
-    const username = urlParams.get('user'); // es: 'yosshi123'
+    const username = urlParams.get('user'); 
 
     let url = 'fetchChannelContent.php';
     if (username) {

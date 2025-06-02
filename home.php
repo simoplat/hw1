@@ -59,12 +59,12 @@
                 </div>
 
                 <div class="nav-right">
-                    <button>
+                    <!-- <button>
                         <section>
                             <img id="cross-pic" src="media/cross.svg">
                             Crea                       
                         </section>
-                    </button>
+                    </button> -->
                     <button id="notify-button">
                         <img id="notify-pic" src="media/notifications-1.png"/>
                     </button>
