@@ -118,9 +118,7 @@ function onJson(json) {
     if (mediaPath) {
         coverImg.src = mediaPath;
 
-        coverImg.onerror = () => {
-            coverImg.remove();
-        };
+        
 
         cover.appendChild(coverImg);
     }
@@ -169,35 +167,35 @@ function aggiornaCommenti() {
 
 
 function onJsonCommenti(json) {
-    
-    
     if (!json) return;
-    else {
-        const oldComments = document.querySelectorAll('.comment');// per esempio
-        oldComments.forEach(comment => comment.remove());// Rimuovi tutti i div con classe "comment"
+
+    let oldComments = document.querySelectorAll('.comment');
+    for (let i = 0; i < oldComments.length; i++) {
+        oldComments[i].remove();
     }
-    
+
     // Aggiungi i nuovi commenti
-    json.forEach(commento => {
- 
-        const commentDiv = document.createElement('div');
+    for (let i = 0; i < json.length; i++) {
+        let commento = json[i];
+
+        let commentDiv = document.createElement('div');
         commentDiv.classList.add('comment');
 
-        const p = document.createElement('p');
+        let p = document.createElement('p');
 
-        const author = document.createElement('a');
+        let author = document.createElement('a');
         author.classList.add('username');
-        author.href = `user.php?user=${encodeURIComponent(commento.username)}`;
-        author.textContent = `@${commento.username}:`;
+        author.href = 'user.php?user=' + encodeURIComponent(commento.username);
+        author.textContent = '@' + commento.username + ':';
 
-        // Aggiungi autore + testo nello stesso paragrafo
         p.appendChild(author);
-        p.append(` ${commento.testo}`); // Spazio prima del testo del commento
+        p.append(' ' + commento.testo);
 
         commentDiv.appendChild(p);
         commentSection.appendChild(commentDiv);
-    });
+    }
 }
+
 
 
 function responseAggiungiCommento(response) {
