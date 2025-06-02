@@ -20,6 +20,7 @@ $query = "
     JOIN users u ON i.seguito_id = u.id
     LEFT JOIN immaginiutente imm ON u.id = imm.id_utente
     WHERE i.follower_id = $userid
+    ORDER BY u.username
 ";
 
 $result = mysqli_query($conn, $query);

@@ -35,7 +35,7 @@ function onJson(json) {
         preferitoText.textContent = 'Rimuovi dai preferiti';
         preferitoBtn.dataset.set = 'yes';
         if (heartIcon) {
-            heartIcon.src = 'Media/heart_full.svg'; // o .svg se usi svg
+            heartIcon.src = 'Media/heart_full.svg'; 
             heartIcon.alt = 'Rimuovi dai preferiti';
         }
     } else {

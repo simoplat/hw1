@@ -102,3 +102,78 @@ if (json.profilo && json.profilo.name && json.profilo.surname) {
 }
 
 fetchChannelContent();
+
+const iscrivitiBtn = document.querySelector('.btn-iscrizione');
+if (iscrivitiBtn) {
+    iscrivitiBtn.addEventListener('click', toggleIscritto);
+}
+
+function toggleIscritto() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const user_channel = urlParams.get('user');
+    console.log('TOGGLE id canale: ' + user_channel);
+
+    if (user_channel) {
+        const formData = new FormData();
+        formData.append('user', user_channel);
+
+        fetch('toggleIscritto.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json()).then(updateIscrittoUI)
+    } else {
+        console.error("ID post non trovato nell'URL");
+    }
+
+}
+
+
+function updateIscrittoUI(json) {
+    const iscrivitiTxt = document.querySelector('.btn-text');
+    if(iscrivitiBtn){
+
+        if(json.iscritto) {
+            iscrivitiBtn.setAttribute('data-set', 'yes');
+            iscrivitiTxt.textContent = 'Disiscriviti dal canale';
+            
+        } else if(json.iscritto === false) {
+            iscrivitiBtn.setAttribute('data-set', 'no');
+            iscrivitiTxt.textContent = 'Iscriviti al canale';
+        }
+
+    }
+
+}
+
+checkIscritto();
+
+function checkIscritto() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const user_channel = urlParams.get('user');
+    const formData = new FormData();
+    console.log('CHECK id canale: ' + user_channel);
+    formData.append('user', user_channel);
+    fetch('check_channel.php', {
+        method: 'POST',
+        body: formData
+    })
+        .then(res => res.text())
+        .then(text => {
+            if (text === 'true') {
+                console.log("Iscritto? true");
+                const iscTxt = document.getElementById('isc-text');
+                if (iscTxt) {
+                    iscTxt.textContent = 'Disiscriviti dal canale';
+                    iscrivitiBtn.setAttribute('data-set', 'yes');
+                }
+            } else if (text === 'false') {
+                console.log("Iscritto? false");
+                // 
+            }
+            else if( text === 'TeStesso') {
+                console.log("Non puoi iscriverti al tuo stesso canale");
+                iscrivitiBtn.classList.add('hidden');
+            }
+        })
+}

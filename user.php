@@ -46,7 +46,7 @@
                 </div>
 
                 <button class="btn-iscrizione" data-set="no">
-                    <span class="btn-text">Iscriviti al canale</span>
+                    <span id="isc-text" class="btn-text">Iscriviti al canale</span>
                 </button>
 
                 <div id="profile-content">
