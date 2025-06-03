@@ -22,7 +22,7 @@ $username = mysqli_real_escape_string($conn, $_POST['user']);
 $user_id = intval($userid);
 
 $query = "SELECT id FROM users WHERE username = '$username'";
-$res = mysqli_query($conn, $query);
+$res = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
 if (!$res || mysqli_num_rows($res) === 0) {
     echo json_encode(['error' => 'Utente (canale) non trovato']);
@@ -40,7 +40,7 @@ if ($channel_id === $user_id) {
 }
 
 $checkQuery = "SELECT * FROM iscrizione WHERE follower_id = $user_id AND seguito_id = $channel_id";
-$checkRes = mysqli_query($conn, $checkQuery);
+$checkRes = mysqli_query($conn, $checkQuery) or die(mysqli_error($conn));
 
 if (!$checkRes) {
     echo json_encode(['error' => 'Errore nella query SELECT']);
@@ -51,7 +51,7 @@ if (!$checkRes) {
 if (mysqli_num_rows($checkRes) > 0) {
     // Già iscritto: rimuovi
     $deleteQuery = "DELETE FROM iscrizione WHERE follower_id = $user_id AND seguito_id = $channel_id";
-    if (mysqli_query($conn, $deleteQuery)) {
+    if (mysqli_query($conn, $deleteQuery) or die(mysqli_error($conn))) {
         echo json_encode(['iscritto' => false]);
     } else {
         echo json_encode(['error' => 'Errore durante la rimozione dell\'iscrizione']);
@@ -59,7 +59,7 @@ if (mysqli_num_rows($checkRes) > 0) {
 } else {
     // Non iscritto: aggiungi
     $insertQuery = "INSERT INTO iscrizione (follower_id, seguito_id) VALUES ($user_id, $channel_id)";
-    if (mysqli_query($conn, $insertQuery)) {
+    if (mysqli_query($conn, $insertQuery) or die(mysqli_error($conn))) {
         echo json_encode(['iscritto' => true]);
     } else {
         echo json_encode(['error' => 'Errore durante l\'aggiunta dell\'iscrizione']);

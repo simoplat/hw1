@@ -44,7 +44,7 @@ LIMIT 1
 ";
 
 
-$result = mysqli_query($conn, $query);
+$result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 if (!$result) {
     echo json_encode(['error' => 'Errore nella query']);
     exit;

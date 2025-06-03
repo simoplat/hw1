@@ -169,21 +169,21 @@ function aggiornaCommenti() {
 function onJsonCommenti(json) {
     if (!json) return;
 
-    let oldComments = document.querySelectorAll('.comment');
+    const oldComments = document.querySelectorAll('.comment');
     for (let i = 0; i < oldComments.length; i++) {
         oldComments[i].remove();
     }
 
-    // Aggiungi i nuovi commenti
+    // Aggiungi commenti
     for (let i = 0; i < json.length; i++) {
         let commento = json[i];
 
-        let commentDiv = document.createElement('div');
+        const commentDiv = document.createElement('div');
         commentDiv.classList.add('comment');
 
-        let p = document.createElement('p');
+        const p = document.createElement('p');
 
-        let author = document.createElement('a');
+        const author = document.createElement('a');
         author.classList.add('username');
         author.href = 'user.php?user=' + encodeURIComponent(commento.username);
         author.textContent = '@' + commento.username + ':';

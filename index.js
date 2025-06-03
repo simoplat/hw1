@@ -2,7 +2,6 @@
   const images = [
     'Media/welcomeWallpaper.jpg',
     'Content/profile/pf1Background.jpg',
-    'Content/background/Londra.jpg',
   ];
 
   let index = 0;

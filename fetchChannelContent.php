@@ -12,7 +12,7 @@ if (!$conn) {
 // Se viene passato un nome utente, cerco il suo ID
 if (isset($_GET['user'])) {
     $username = mysqli_real_escape_string($conn, $_GET['user']);
-    $res = mysqli_query($conn, "SELECT id FROM users WHERE username = '$username'");
+    $res = mysqli_query($conn, "SELECT id FROM users WHERE username = '$username'") or die(mysqli_error($conn));
     if ($row = mysqli_fetch_assoc($res)) {
         $searchUserId = $row['id'];
     } else {
@@ -44,7 +44,7 @@ $query = "
     ORDER BY p.id_post DESC
 ";
 
-$result = mysqli_query($conn, $query);
+$result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 if ($result) {
     while ($entry = mysqli_fetch_assoc($result)) {
         // Aggiungi post alla lista
@@ -83,7 +83,7 @@ if (count($posts) === 0) {
         LIMIT 1
 
     ";
-    $resImg = mysqli_query($conn, $queryImg);
+    $resImg = mysqli_query($conn, $queryImg) or die(mysqli_error($conn));
     if ($resImg && $rowImg = mysqli_fetch_assoc($resImg)) {
         $profilo['immagine_profilo'] = $rowImg['immagine_profilo'] ?: $profilo['immagine_profilo'];
         $profilo['immagine_copertina'] = $rowImg['immagine_copertina'] ?: $profilo['immagine_copertina'];

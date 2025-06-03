@@ -103,14 +103,20 @@ function onJsonNotifications(json) {
         const p = document.createElement('p');
         p.textContent = 'Nessuna notifica';
         notifyMenu.appendChild(p);
-    } else {
-        json.followers.forEach(username => {
-            const p = document.createElement('p');
-            p.textContent = `@${username} si è iscritto al tuo canale`;
-            notifyMenu.appendChild(p);
-        });
+        return;
+    }
+
+    for (let i = 0; i < json.followers.length; i++) {
+        createNotificationMessage(json.followers[i]);
     }
 }
+
+function createNotificationMessage(username) {
+    const p = document.createElement('p');
+    p.textContent = '@' + username + ' si è iscritto al tuo canale';
+    notifyMenu.appendChild(p);
+}
+
 
 function clearNotifyMenu() {
     while (notifyMenu.querySelector('p')) {
@@ -127,23 +133,34 @@ function onResponse(response) {
 
 
 function nascontiContenuti(dataType) {
-    document.querySelectorAll(`h1[data-type="${dataType}"] img`).forEach(img => {
-        img.addEventListener('click', () => {
-            document.querySelectorAll(`.sidebar-h[data-type="${dataType}"]`).forEach(sidebar => {
+    const images = document.querySelectorAll('h1[data-type="' + dataType + '"] img');
 
-                if (sidebar.classList.contains('hidden')) {
-                    sidebar.classList.remove('hidden');
-                    img.dataset.type = 'up';
-                    console.log('A');
-                } else {
-                    sidebar.classList.add('hidden');
-                    img.dataset.type = 'down';
-                    console.log('B');
-                }
-            });
+    for (let i = 0; i < images.length; i++) {
+        const img = images[i];
+        img.addEventListener('click', function() {
+            toggleSidebars(dataType, img);
         });
-    });
+    }
 }
+
+function toggleSidebars(dataType, img) {
+    const sidebars = document.querySelectorAll('.sidebar-h[data-type="' + dataType + '"]');
+
+    for (let j = 0; j < sidebars.length; j++) {
+        const sidebar = sidebars[j];
+
+        if (sidebar.classList.contains('hidden')) {
+            sidebar.classList.remove('hidden');
+            img.dataset.type = 'up';
+            console.log('A');
+        } else {
+            sidebar.classList.add('hidden');
+            img.dataset.type = 'down';
+            console.log('B');
+        }
+    }
+}
+
 
 // Example usage:
 nascontiContenuti('Tu');
@@ -259,7 +276,10 @@ function onJsonSpotifyPlaylist(json) {
     navCentral.classList.add('hidden');
 
     const h1sInNavCentral = navCentral.querySelectorAll('h1');
-    h1sInNavCentral.forEach(h1 => h1.remove());
+    for (let i = 0; i < h1sInNavCentral.length; i++) {
+    h1sInNavCentral[i].remove();
+}
+
 
     const categorie = document.querySelector('.categorie');
 
@@ -339,65 +359,52 @@ playlistButton.addEventListener('click', playlistSpotify);
 const channelDivCreator = document.querySelector('.createChannels');
 
 function onJsonChannels(json) {
-       console.log('Json ricevuto, creo i canali');
-       console.log(json);
-       channelDivCreator.innerHTML = '';
+    console.log('Json ricevuto, creo i canali');
+    console.log(json);
 
-       json.forEach(channel => {
+    channelDivCreator.innerHTML = '';
 
-const sidebarDiv = document.createElement('div');
-sidebarDiv.classList.add('sidebar-h');
-sidebarDiv.setAttribute('data-type', 'channel');
-
-// Creo il button
-const button = document.createElement('button');
-
-// Creo il div sidebar-inside
-const sidebarInside = document.createElement('div');
-sidebarInside.classList.add('sidebar-inside');
-
-// Creo il div per immagine
-const imgDiv = document.createElement('div');
-imgDiv.classList.add('sdbar-ins-img');
-
-// Creo l'img
-const img = document.createElement('img');
-img.classList.add('channel-pic');
-if(channel.immagine_profilo)  {
-    img.src = channel.immagine_profilo;
-} else {
-    img.src = 'Media/Portrait_Placeholder.png';
+    for (let i = 0; i < json.length; i++) {
+        createChannelElement(json[i]);
+    }
 }
 
+function createChannelElement(channel) {
+    const sidebarDiv = document.createElement('div');
+    sidebarDiv.classList.add('sidebar-h');
+    sidebarDiv.setAttribute('data-type', 'channel');
 
-imgDiv.appendChild(img);
+    const button = document.createElement('button');
+    const sidebarInside = document.createElement('div');
+    sidebarInside.classList.add('sidebar-inside');
 
-// Creo il div per il testo
-const txtDiv = document.createElement('div');
-txtDiv.classList.add('sdbar-ins-txt');
+    const imgDiv = document.createElement('div');
+    imgDiv.classList.add('sdbar-ins-img');
 
-const p = document.createElement('p');
-p.textContent = channel.channelname;
+    const img = document.createElement('img');
+    img.classList.add('channel-pic');
+    if (channel.immagine_profilo) {
+        img.src = channel.immagine_profilo;
+    } else {
+        img.src = 'Media/Portrait_Placeholder.png';
+    }
+    imgDiv.appendChild(img);
 
+    const txtDiv = document.createElement('div');
+    txtDiv.classList.add('sdbar-ins-txt');
 
-txtDiv.appendChild(p);
+    const p = document.createElement('p');
+    p.textContent = channel.channelname;
+    txtDiv.appendChild(p);
 
+    sidebarInside.appendChild(imgDiv);
+    sidebarInside.appendChild(txtDiv);
 
-sidebarInside.appendChild(imgDiv);
-sidebarInside.appendChild(txtDiv);
-
-
-button.appendChild(sidebarInside);
-
-
-sidebarDiv.appendChild(button);
-
-
-channelDivCreator.appendChild(sidebarDiv);
-
-
-       });
+    button.appendChild(sidebarInside);
+    sidebarDiv.appendChild(button);
+    channelDivCreator.appendChild(sidebarDiv);
 }
+
 
 function loadchannels(){
     console.log('Carico i canali');
@@ -474,6 +481,7 @@ function onJsonHomeFeed(json) {
         imgProfile.src = post.immagine_profilo && post.immagine_profilo.trim() !== ''
             ? post.immagine_profilo
             : 'Media/Portrait_Placeholder.png';
+            
         imgProfile.onerror = () => {
             imgProfile.src = 'Media/Portrait_Placeholder.png';
         };
@@ -536,53 +544,64 @@ if (buttonHomeMobile) {
 fetchHomeContent();
 
 function onJsonCategories(json) {
-
-    
     const navContainer = document.querySelector('.nav-central');
-    navContainer.innerHTML = ''; 
-    
-    
+    navContainer.innerHTML = '';
+
     const tutti = document.createElement('a');
     tutti.textContent = 'Tutti';
     tutti.classList.add('button-link');
     tutti.setAttribute('data-categories', 'tutti');
     navContainer.appendChild(tutti);
-    
+
     tutti.addEventListener('click', fetchHomeContent);
     console.log('Aggiunto link fisso: tutti');
-    
-    
+
     if (!json || json.length === 0) {
         return;
     }
 
-    json.forEach(category => {
-        const link = document.createElement('a');
-        link.textContent = category;
-        link.classList.add('button-link');
-        link.setAttribute('data-categories', category.toLowerCase());
-        navContainer.appendChild(link);
-        link.addEventListener('click', () => filterByCategory(category.toLowerCase()));
-        console.log('Aggiunto link dinamico:', category.toLowerCase());
+    for (let i = 0; i < json.length; i++) {
+        createCategoryLink(json[i], navContainer);
+    }
+}
+
+function createCategoryLink(category, container) {
+    const link = document.createElement('a');
+    link.textContent = category;
+    link.classList.add('button-link');
+    link.setAttribute('data-categories', category.toLowerCase());
+    container.appendChild(link);
+
+    link.addEventListener('click', function() {
+        filterByCategory(category.toLowerCase());
     });
+
+    console.log('Aggiunto link dinamico:', category.toLowerCase());
 }
 
 
-function filterByCategory(categoria){
+
+function filterByCategory(categoria) {
     const category = categoria;
     console.log('Categoria cliccata:', category);
+
     const videoContent = document.querySelectorAll('.video-content');
-    videoContent.forEach(video => {
-      if (video.getAttribute('data-categories') === category) {
-        console.log('Mostro il video: Ho trovato corrispondenza: ' + category);
-        video.classList.remove('hidden');
-        video.classList.add('flex');
-      } else {
-        video.classList.add('hidden');
-        video.classList.remove('flex');
-      }
-    });
+
+    for (let i = 0; i < videoContent.length; i++) {
+        const video = videoContent[i];
+        const videoCategory = video.getAttribute('data-categories');
+
+        if (videoCategory === category) {
+            console.log('Mostro il video: Ho trovato corrispondenza: ' + category);
+            video.classList.remove('hidden');
+            video.classList.add('flex');
+        } else {
+            video.classList.add('hidden');
+            video.classList.remove('flex');
+        }
+    }
 }
+
 
  
 

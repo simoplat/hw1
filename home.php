@@ -7,7 +7,6 @@
 ?>
 
   <?php 
-    // Carico le informazioni dell'utente loggato per visualizzarle nella sidebar (mobile)
     $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
     $userid = mysqli_real_escape_string($conn, $userid);
     $query = "SELECT u.username, i.immagine_profilo
@@ -19,7 +18,7 @@
     $username = $userinfo['username'];
     $profile_picture = $userinfo['immagine_profilo'];
     if (!$profile_picture) {
-        $profile_picture = 'media/Portrait_Placeholder.png'; // Immagine di default se non è stata caricata
+        $profile_picture = 'media/Portrait_Placeholder.png';
     }  
   ?>
 

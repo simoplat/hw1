@@ -22,7 +22,7 @@ $username = mysqli_real_escape_string($conn, $_POST['user']);
 $user_id = intval($userid);
 
 $query = "SELECT id FROM users WHERE username = '$username'";
-$res = mysqli_query($conn, $query);
+$res = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
 if (!$res || mysqli_num_rows($res) === 0) {
     echo 'false';
@@ -41,7 +41,7 @@ if ($channel_id === $user_id) {
 }
 
 $checkQuery = "SELECT follower_id FROM iscrizione WHERE follower_id = $user_id AND seguito_id = $channel_id";
-$checkRes = mysqli_query($conn, $checkQuery);
+$checkRes = mysqli_query($conn, $checkQuery) or die(mysqli_error($conn));
 
 if ($checkRes && mysqli_num_rows($checkRes) > 0) {
     echo 'true';

@@ -21,7 +21,7 @@ $query = "SELECT u.username
           WHERE i.seguito_id = $user_id";
 
 
-$res = mysqli_query($conn, $query);
+$res = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
 if (!$res) {
     echo json_encode(['error' => 'Errore nella query di selezione']);
