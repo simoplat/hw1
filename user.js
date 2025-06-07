@@ -117,7 +117,7 @@ function toggleIscritto() {
             method: 'POST',
             body: formData
         })
-            .then(response => response.json()).then(updateIscrittoUI)
+            .then(Onresponse).then(updateIscrittoUI)
     } else {
         console.error("ID post non trovato nell'URL");
     }

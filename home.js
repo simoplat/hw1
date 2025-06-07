@@ -93,7 +93,6 @@ function fetchNotifications() {
     fetch('fetchNotification.php')
         .then(onResponse)
         .then(onJsonNotifications)
-        .catch(error => console.error('Errore nel fetch:', error));
 }
 
 function onJsonNotifications(json) {
@@ -462,9 +461,7 @@ function onJsonHomeFeed(json) {
         imgThumbnail.src = post.percorsoMedia && post.percorsoMedia.trim() !== ''
             ? post.percorsoMedia
             : 'Media/placeholder.jpg';
-        imgThumbnail.onerror = () => {
-            imgThumbnail.src = 'Media/placeholder.jpg';
-        };
+        
 
         aThumbnail.appendChild(imgThumbnail);
         divThumbnail.appendChild(aThumbnail);
@@ -482,9 +479,7 @@ function onJsonHomeFeed(json) {
             ? post.immagine_profilo
             : 'Media/Portrait_Placeholder.png';
             
-        imgProfile.onerror = () => {
-            imgProfile.src = 'Media/Portrait_Placeholder.png';
-        };
+        
 
         imgProfile.classList.add('channel-pic');
         aProfile.appendChild(imgProfile);
@@ -663,9 +658,7 @@ function onJsonPreferiti(json) {
         imgThumbnail.src = post.percorsoMedia && post.percorsoMedia.trim() !== ''
             ? post.percorsoMedia
             : 'Media/placeholder.jpg';
-        imgThumbnail.onerror = () => {
-            imgThumbnail.src = 'Media/placeholder.jpg';
-        };
+        
 
         aThumbnail.appendChild(imgThumbnail);
         divThumbnail.appendChild(aThumbnail);
@@ -684,10 +677,7 @@ function onJsonPreferiti(json) {
         imgProfile.src = post.immagine_profilo && post.immagine_profilo.trim() !== ''
             ? post.immagine_profilo
             : 'Media/Portrait_Placeholder.png';
-        imgProfile.onerror = () => {
-            imgProfile.src = 'Media/Portrait_Placeholder.png';
-        };
-
+       
         imgProfile.classList.add('channel-pic');
         aProfile.appendChild(imgProfile);
         divInfo.appendChild(aProfile);

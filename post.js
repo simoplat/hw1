@@ -229,9 +229,8 @@ function inviaCommento(formData) {
         method: 'POST',
         body: formData
     })
-    .then(response => response.json())
+    .then(Onresponse)
     .then(responseAggiungiCommento)
-    .catch(error => console.error('Errore:', error));
 }
 
 function togglePreferito() {
@@ -247,7 +246,7 @@ function togglePreferito() {
             method: 'POST',
             body: formData
         })
-            .then(response => response.json()).then(updatePreferitoUI)
+            .then(Onresponse).then(updatePreferitoUI)
     } else {
         console.error("ID post non trovato nell'URL");
     }
