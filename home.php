@@ -82,12 +82,17 @@
                         <button class="menu-button" data-action="settings">
                             <p>Impostazioni</p>
                         </button> -->
-                        <button class="menu-button" data-action="preferences">
-                            <a href="user.php?user=<?php echo urlencode($username); ?>">Il tuo account</a>
-                        </button>
-                        <button class="menu-button" data-action="contact">
-                            <a href='logout.php'>Log out</a>
-                        </button>
+                        <a href="user.php?user=<?php echo urlencode($username); ?>">
+                            <button class="menu-button" data-action="preferences">
+                                Il tuo account
+                            </button>
+                        </a>
+
+                        <a href='logout.php'>
+                            <button class="menu-button" data-action="contact">
+                                Log out
+                            </button>
+                        </a>
                     </div>
                     
                 </div>

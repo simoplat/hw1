@@ -153,23 +153,29 @@ function checkIscritto() {
     fetch('check_channel.php', {
         method: 'POST',
         body: formData
-    })
-        .then(res => res.text())
-        .then(text => {
-            if (text === 'true') {
-                console.log("Iscritto? true");
-                const iscTxt = document.getElementById('isc-text');
-                if (iscTxt) {
-                    iscTxt.textContent = 'Disiscriviti dal canale';
-                    iscrivitiBtn.setAttribute('data-set', 'yes');
-                }
-            } else if (text === 'false') {
-                console.log("Iscritto? false");
-                // 
-            }
-            else if( text === 'TeStesso') {
-                console.log("Non puoi iscriverti al tuo stesso canale");
-                iscrivitiBtn.classList.add('hidden');
-            }
-        })
+    }).then(Onresponse).then(handleIscritto);
+}
+
+
+
+
+function handleIscritto(json) {
+    if (json === true || json.iscritto === true) {
+        console.log("Iscritto? true");
+        const iscTxt = document.getElementById('isc-text');
+        if (iscTxt) {
+            iscTxt.textContent = 'Disiscriviti dal canale';
+            iscrivitiBtn.setAttribute('data-set', 'yes');
+        }
+    } else if (json === false || json.iscritto === false) {
+        console.log("Iscritto? false");
+        const iscTxt = document.getElementById('isc-text');
+        if (iscTxt) {
+            iscTxt.textContent = 'Iscriviti al canale';
+            iscrivitiBtn.setAttribute('data-set', 'no');
+        }
+    } else if (json === 'TeStesso' || json.iscritto === 'TeStesso') {
+        console.log("Non puoi iscriverti al tuo stesso canale");
+        iscrivitiBtn.classList.add('hidden');
+    }
 }

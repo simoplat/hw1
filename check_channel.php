@@ -3,18 +3,18 @@ require_once 'auth.php';
 header('Content-Type: application/json');
 
 if (!$userid = checkAuth()) {
-    echo 'false';
+    echo json_encode(['iscritto' => false]);
     exit;
 }
 
 $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']);
 if (!$conn) {
-    echo 'false';
+    echo json_encode(['iscritto' => false]);
     exit;
 }
 
 if (!isset($_POST['user'])) {
-    echo 'false';
+    echo json_encode(['iscritto' => false]);
     exit;
 }
 
@@ -25,7 +25,7 @@ $query = "SELECT id FROM users WHERE username = '$username'";
 $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
 if (!$res || mysqli_num_rows($res) === 0) {
-    echo 'false';
+    echo json_encode(['iscritto' => false]);
     mysqli_close($conn);
     exit;
 }
@@ -33,9 +33,8 @@ if (!$res || mysqli_num_rows($res) === 0) {
 $row = mysqli_fetch_assoc($res);
 $channel_id = intval($row['id']);
 
-// Non può iscriversi a se stesso
 if ($channel_id === $user_id) {
-    echo 'TeStesso';
+    echo json_encode(['iscritto' => 'TeStesso']);
     mysqli_close($conn);
     exit;
 }
@@ -44,11 +43,10 @@ $checkQuery = "SELECT follower_id FROM iscrizione WHERE follower_id = $user_id A
 $checkRes = mysqli_query($conn, $checkQuery) or die(mysqli_error($conn));
 
 if ($checkRes && mysqli_num_rows($checkRes) > 0) {
-    echo 'true';
+    echo json_encode(['iscritto' => true]);
 } else {
-    echo 'false';
+    echo json_encode(['iscritto' => false]);
 }
-
 
 mysqli_free_result($res);
 if ($checkRes) mysqli_free_result($checkRes);
